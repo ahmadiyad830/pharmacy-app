@@ -2,7 +2,9 @@ package com.shahm.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MedicinesHave {
+import java.io.Serializable;
+
+public class MedicinesHave implements Serializable {
     @SerializedName("id")
     private String id;
     @SerializedName("barcode")
@@ -46,6 +48,10 @@ public class MedicinesHave {
         this.sachet = sachet;
         this.location = sLocation;
         this.quantity = quantity;
+    }
+
+    public String[] listMedHave() {
+        return new String[]{id, barcode, name, scientific, concentration, dosageForm, notes, store, sachet, location, quantity};
     }
 
     public String getId() {

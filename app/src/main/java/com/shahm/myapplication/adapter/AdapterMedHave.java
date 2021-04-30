@@ -1,6 +1,7 @@
 package com.shahm.myapplication.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -30,13 +31,15 @@ public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHold
         if (inflater==null){
             inflater = LayoutInflater.from(parent.getContext());
         }
-        ItemMedHaveBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_medicines, parent,false);
+        ItemMedHaveBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_med_have, parent,false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(listMed.get(position));
+        boolean isExpanded = listMed.get(position).isExpanded();
+        holder.binding.constrainExpanded.setVisibility(isExpanded? View.VISIBLE:View.GONE);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHold
         }
         private void bind(MedicinesHave model){
             binding.setMedicines(model);
-            binding.setPosition(getAdapterPosition());
+            binding.setPosition(String.valueOf(getAdapterPosition()));
             binding.container.setOnClickListener(v -> {
                 listMed.get(getAdapterPosition()).setExpanded(!model.isExpanded());
                 notifyItemChanged(getAdapterPosition());

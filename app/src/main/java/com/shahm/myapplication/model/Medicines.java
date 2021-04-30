@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Medicines implements Serializable {
+public class Medicines  implements Serializable {
     @SerializedName("id")
     private String id;
     @SerializedName("barcode")
@@ -27,9 +27,11 @@ public class Medicines implements Serializable {
     private String location;
     @SerializedName("squantity")
     private String quantity;
+
     private boolean expanded = false;
 
     public Medicines(String barcode, String name, String scientific, String concentration, String dosageform, String notes, String store, String sachet, String location, String quantity) {
+//        super(barcode,name,scientific,concentration,dosageform,notes,store,sachet,location,quantity);
         this.barcode = barcode;
         this.name = name;
         this.scientific = scientific;
@@ -40,6 +42,9 @@ public class Medicines implements Serializable {
         this.sachet = sachet;
         this.location = location;
         this.quantity = quantity;
+    }
+    public String[] listMed(){
+        return new String[]{id,barcode,name,scientific,concentration,dosageform,notes,store,sachet,location,quantity};
     }
 
     @Override

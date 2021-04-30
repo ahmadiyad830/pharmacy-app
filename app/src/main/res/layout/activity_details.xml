@@ -5,8 +5,39 @@
 
     <data>
         <variable
-            name="model"
-            type="com.shahm.myapplication.model.Medicines" />
+            name="id"
+            type="String" />
+        <variable
+            name="barcode"
+            type="String" />
+        <variable
+            name="name"
+            type="String" />
+        <variable
+            name="scientific"
+            type="String" />
+        <variable
+            name="concentration"
+            type="String" />
+        <variable
+            name="dosageform"
+            type="String" />
+        <variable
+            name="notes"
+            type="String" />
+        <variable
+            name="store"
+            type="String" />
+        <variable
+            name="sachet"
+            type="String" />
+        <variable
+            name="location"
+            type="String" />
+        <variable
+            name="quantity"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +105,7 @@
                         app:layout_collapseMode="pin"
                         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                         app:subtitleTextColor="@android:color/black"
-                        app:title="@{model.name}"
+                        app:title='@{name}'
                         app:titleMarginStart="35dp"
                         app:titleTextColor="@android:color/black" />
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -105,35 +136,35 @@
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"id: "+model.id}'/>
+                        android:text='@{"id: "+id}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"barcode: "+model.barcode}'/>
+                        android:text='@{"barcode: "+barcode}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"quantity: "+model.quantity}'/>
+                        android:text='@{"quantity: "+quantity}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"scientific: "+model.scientific}'/>
+                        android:text='@{"scientific: "+scientific}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"concentration: "+model.concentration}'/>
+                        android:text='@{"concentration: "+concentration}'/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -141,7 +172,7 @@
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"dosageform: "+model.dosageform}'/>
+                        android:text='@{"dosageform: "+dosageform}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,14 +187,14 @@
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"store: "+model.store}'/>
+                        android:text='@{"store: "+store}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"notes: "+model.notes}'/>
+                        android:text='@{"notes: "+notes}'/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -171,14 +202,14 @@
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"sachet: "+model.sachet}'/>
+                        android:text='@{"sachet: "+sachet}'/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/_14ssp"
                         android:textColor="@color/white"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"location: "+model.location}'/>
+                        android:text='@{"location: "+location}'/>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

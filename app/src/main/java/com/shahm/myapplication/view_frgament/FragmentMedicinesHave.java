@@ -1,5 +1,6 @@
 package com.shahm.myapplication.view_frgament;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.shahm.myapplication.adapter.AdapterMedHave;
 import com.shahm.myapplication.databinding.FragmentMedicinesHaveBinding;
 import com.shahm.myapplication.listeners.OnMedHaveClick;
 import com.shahm.myapplication.model.MedicinesHave;
+import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.ViewModelMedicinesHave;
 
 import java.util.ArrayList;
@@ -29,22 +31,25 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     private ViewModelMedicinesHave viewModel;
     private final List<MedicinesHave> listMed = new ArrayList<>();
     private AdapterMedHave adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_medicines_have, container, false);
-        viewModel = new ViewModelProvider(this,new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(ViewModelMedicinesHave.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_medicines_have, container, false);
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(ViewModelMedicinesHave.class);
         binding.recyclerMedicines.setHasFixedSize(true);
-        adapter= new AdapterMedHave(listMed,this);
+        adapter = new AdapterMedHave(listMed, this);
         doInitialization();
         loadListMedicinesHave();
         return binding.getRoot();
     }
-    private void doInitialization(){
+
+    private void doInitialization() {
         binding.recyclerMedicines.setAdapter(adapter);
     }
+
     private void loadListMedicinesHave() {
-        viewModel.getMedicinesHave(1).observe(getViewLifecycleOwner(),medicinesHaves -> {
+        viewModel.getMedicinesHave(1).observe(getViewLifecycleOwner(), medicinesHaves -> {
             if (listMed != null) {
                 binding.recyclerMedicines.setVisibility(View.VISIBLE);
                 int oldCount = listMed.size();
@@ -56,10 +61,11 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     }
 
 
-
-
     @Override
     public void onMedHavClick(MedicinesHave model) {
-
+        Intent intent = new Intent(requireActivity(), ActivityDetails.class);
+//        intent.putExtra("medicines", model);
+        intent.putExtra("listMed",model.listMedHave());
+        startActivity(intent);
     }
 }

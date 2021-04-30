@@ -14,7 +14,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityDetailsBinding;
-import com.shahm.myapplication.model.Medicines;
 
 public class ActivityDetails extends AppCompatActivity {
     private ActivityDetailsBinding binding;
@@ -23,21 +22,42 @@ public class ActivityDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+        String[] model = getIntent().getStringArrayExtra("listMed");
 
-        Medicines model = (Medicines) getIntent().getSerializableExtra("medicines");
-        if (model != null)
-            binding.setModel(model);
+        binding.setId(model[0]);
+        binding.setBarcode(model[1]);
+        binding.setName(model[2]);
+        binding.setScientific(model[3]);
+        binding.setConcentration(model[4]);
+        binding.setDosageform(model[5]);
+        binding.setNotes(model[6]);
+        binding.setStore(model[7]);
+        binding.setSachet(model[8]);
+        binding.setLocation(model[9]);
+        binding.setQuantity(model[10]);
+//        if (getIntent().getSerializableExtra("medicines") instanceof Medicines){
+//            Medicines model = (Medicines) getIntent().getSerializableExtra("medicines");
+//            if (model != null)
+//                setValue();
+//            else finish();
 
-        binding.btnBack.setOnClickListener(v -> {
-            onBackPressed();
-        });
+//        }else {
+//            MedicinesHave model = (MedicinesHave) getIntent().getSerializableExtra("medicines");
+//            if (model != null){
 
-        convertNumToBarcode();
+//            } else finish();
+//        }
 
 
+//        binding.btnBack.setOnClickListener(v -> {
+//            onBackPressed();
+//        });
+
+//        convertNumToBarcode();
 
 
     }
+
 
     @Override
     protected void onStart() {
@@ -49,7 +69,7 @@ public class ActivityDetails extends AppCompatActivity {
     private void convertNumToBarcode() {
         String barCode = "6253500622058".trim();
         MultiFormatWriter writer = new MultiFormatWriter();
-        if (barCode != null && barCode.isEmpty()){
+        if (barCode != null && barCode.isEmpty()) {
             try {
                 BitMatrix matrix = writer.encode(barCode, BarcodeFormat.CODABAR, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 BarcodeEncoder encoder = new BarcodeEncoder();
@@ -59,7 +79,7 @@ public class ActivityDetails extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else Toast.makeText(this, "error try again", Toast.LENGTH_SHORT).show();
+        } else Toast.makeText(this, "error try again", Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -97,7 +97,7 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     @Override
     public void onItemClick(Medicines model) {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
-        intent.putExtra("medicines", model);
+        intent.putExtra("listMed", model.listMed());
         startActivity(intent);
     }
 }
