@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main_bottom"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.shahm.myapplication.view_frgament.FragmentHome"
+        tools:layout="@layout/fragment_home"
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_home_to_fragmentSetting"
+            app:destination="@id/fragmentSetting" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        tools:layout="@layout/fragment_search"
+        android:name="com.shahm.myapplication.view_frgament.FragmentSearch"
+        android:label="FragmentSearch" />
+    <fragment
+        android:id="@+id/addMedicine"
+        tools:layout="@layout/fragment_add"
+        android:name="com.shahm.myapplication.view_frgament.FragmentAdd"
+        android:label="FragmentAdd" />
+    <fragment
+        android:id="@+id/fragmentSetting"
+        android:name="com.shahm.myapplication.view_frgament.FragmentSetting"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/store"
+        tools:layout="@layout/fragment_store"
+        android:name="com.shahm.myapplication.view_frgament.FragmentStore"
+        android:label="FragmentStore" >
+        <action
+            android:id="@+id/action_fragmentStore_to_fragmentSetting"
+            app:destination="@id/fragmentSetting" />
+    </fragment>
+</navigation>

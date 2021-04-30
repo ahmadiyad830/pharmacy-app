@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="search">search</string>
+    <string name="add">add</string>
+    <string name="home">home</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bar_code">bar code</string>
+    <string name="details">More Details</string>
+    <string name="keep_reading">read more</string>
+    <string name="info">info</string>
+    <string name="price">price</string>
+    <string name="notes">notes</string>
+    <string name="search_bar">search for drugs</string>
+    <string name="name">name</string>
+    <string name="scientific">scientific</string>
+    <string name="concentration">concentration</string>
+    <string name="dosageform">dosageform</string>
+    <string name="store">store</string>
+    <string name="sachet">sachet</string>
+    <string name="location">location</string>
+    <string name="todo">TODO</string>
+    <string name="setting">setting</string>
+    <string name="sort">sort</string>
+    <string name="all_drugs">all Drugs</string>
+    <string name="drugs_i_have">Drugs i have</string>
+    <string name="best_selling">best selling</string>
+    <string name="sortby">Sort By</string>
+    <string-array name="spinner_sort_by">
+        <item>week</item>
+        <item>month</item>
+        <item>three month</item>
+        <item>year</item>
+    </string-array>
+</resources>
