@@ -61,7 +61,7 @@ public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHold
                 listMed.get(getAdapterPosition()).setExpanded(!model.isExpanded());
                 notifyItemChanged(getAdapterPosition());
             });
-            binding.btnDetails.setOnClickListener(v -> {
+            binding.button.setOnClickListener(v -> {
                 onMedHaveClick.onMedHavClick(model);
             });
 

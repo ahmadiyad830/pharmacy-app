@@ -15,8 +15,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_med_have"
         android:layout_width="match_parent"
-        android:background="@color/black"
-        android:layout_height="wrap_content">
+        android:background="?colorSecondary"
+        android:outlineAmbientShadowColor="#999999"
+        android:layout_height="wrap_content"
+        tools:targetApi="p">
 
 
         <androidx.cardview.widget.CardView
@@ -25,6 +27,7 @@
             android:orientation="horizontal"
             app:cardCornerRadius="@dimen/_6sdp"
             app:cardElevation="@dimen/_3sdp"
+            android:textColor="@color/main_color"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,6 +37,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/container"
+                android:background="?colorSecondary"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="@dimen/_14sdp">
@@ -46,6 +50,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@{medicines.quantity}"
                     android:textSize="@dimen/_16ssp"
+                    android:textColor="@color/text_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,6 +64,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:maxEms="15"
+                    android:textColor="@color/text_color"
                     android:maxLines="1"
                     android:text="@{medicines.name}"
                     android:textSize="@dimen/_16ssp"
@@ -75,6 +81,7 @@
                     android:layout_gravity="start"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@{position}"
+                    android:textColor="@color/text_color"
                     android:textSize="@dimen/_15ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +92,7 @@
                     android:id="@+id/constrain_expanded"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/main_color"
                     android:layout_marginVertical="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name"
@@ -93,6 +101,8 @@
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="0dp"
+                        android:textColor="@color/text_color"
+                        android:textSize="@dimen/_16ssp"
                         android:layout_height="match_parent"
                         android:text="@{medicines.scientific}"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,10 +111,13 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/btn_details"
+                        android:id="@+id/button"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="?actionBarSize"
                         android:text="@string/details"
+                        android:textSize="@dimen/_18ssp"
+                        android:textColor="@color/text_btn_color"
+                        android:background="?colorSecondaryVariant"
                         android:textAllCaps="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

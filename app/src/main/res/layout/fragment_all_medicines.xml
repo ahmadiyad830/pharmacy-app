@@ -24,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/black">
+            android:background="?colorSecondary">
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -43,7 +43,8 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_scroll_recycler"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="?actionBarSize"
+
                 android:clickable="true"
                 android:contentDescription="@string/app_name"
                 android:elevation="6dp"
@@ -58,7 +59,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:pressedTranslationZ="12dp"
-                app:tint="@android:color/white"
+                app:tint="?colorSecondaryVariant"
                 app:useCompatPadding="true" />
 
             <ProgressBar

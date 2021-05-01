@@ -3,41 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-    </data>
+    <data></data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?colorSecondary"
         tools:context=".view_frgament.FragmentHome">
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                
+
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/toolbar_home"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
-                    app:menu="@menu/main_menu_toolbar_"
-                    app:layout_scrollFlags="scroll|enterAlways"/>
+                    android:background="?colorOnPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:menu="@menu/main_menu_toolbar_" />
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tableLayout"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     android:layout_gravity="bottom"
-                    android:background="@color/black"
+                    android:background="?colorOnPrimary"
                     app:tabIndicatorColor="@color/white"
                     app:tabIndicatorFullWidth="true"
                     app:tabInlineLabel="true"
-                    app:tabSelectedTextColor="@color/white"
+                    app:tabSelectedTextColor="@color/selector_color"
                     app:tabTextAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                    app:tabTextColor="@android:color/darker_gray" />
+                    app:tabTextColor="@color/icon_color" />
 
             </com.google.android.material.appbar.AppBarLayout>
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager2"
                 android:layout_width="match_parent"

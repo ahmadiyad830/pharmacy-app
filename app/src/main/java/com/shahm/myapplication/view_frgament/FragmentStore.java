@@ -32,6 +32,7 @@ public class FragmentStore extends Fragment implements AdapterView.OnItemSelecte
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
     }
 
     @Override

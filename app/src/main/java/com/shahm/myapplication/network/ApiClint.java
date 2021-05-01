@@ -14,6 +14,7 @@ public class ApiClint {
         }
         return retrofit;
     }
+
 }
 //https://www.episodate.com/api/most-popular?page=1
 //https://www.blacktools.io/api/?drug=3

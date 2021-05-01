@@ -17,7 +17,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/black"
         android:layout_height="match_parent"
         tools:context=".view_activity.MainActivity">
 
@@ -26,8 +25,9 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:defaultNavHost="true"
-            app:itemIconSize="@dimen/_25sdp"
+            app:itemIconSize="@dimen/_20sdp"
             app:menu="@menu/bottom_nav_menu"
+            android:background="?attr/colorSecondary"
             app:navGraph="@navigation/nav_main_bottom"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

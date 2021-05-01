@@ -2,8 +2,6 @@ package com.shahm.myapplication.view_activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -49,11 +47,9 @@ public class ActivityDetails extends AppCompatActivity {
 //        }
 
 
-//        binding.btnBack.setOnClickListener(v -> {
-//            onBackPressed();
-//        });
-
-//        convertNumToBarcode();
+        binding.btnBack.setOnClickListener(v -> {
+            onBackPressed();
+        });
 
 
     }
@@ -64,22 +60,21 @@ public class ActivityDetails extends AppCompatActivity {
         super.onStart();
         binding.collapseActionView.setExpandedTitleTextAppearance(R.style.ExpandedAppbar);
         binding.collapseActionView.setCollapsedTitleTextAppearance(R.style.CollapsedAppbar);
+        convertNumToBarcode();
     }
 
     private void convertNumToBarcode() {
-        String barCode = "6253500622058".trim();
+        String barCode = "6253500622058";
         MultiFormatWriter writer = new MultiFormatWriter();
-        if (barCode != null && barCode.isEmpty()) {
-            try {
-                BitMatrix matrix = writer.encode(barCode, BarcodeFormat.CODABAR, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                BarcodeEncoder encoder = new BarcodeEncoder();
-                Bitmap bitmap = encoder.createBitmap(matrix);
-                binding.imageTVShow.setImageBitmap(bitmap);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else Toast.makeText(this, "error try again", Toast.LENGTH_SHORT).show();
+        try {
+            int w = (int) getResources().getDimension(R.dimen._350sdp);
+            int h = (int) getResources().getDimension(R.dimen._200sdp);
+            BitMatrix matrix = writer.encode(barCode, BarcodeFormat.CODABAR, w, h);
+            BarcodeEncoder encoder = new BarcodeEncoder();
+            Bitmap bitmap = encoder.createBitmap(matrix);
+            binding.imageTVShow.setImageBitmap(bitmap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }
