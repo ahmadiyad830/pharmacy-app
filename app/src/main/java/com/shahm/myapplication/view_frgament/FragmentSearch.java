@@ -23,7 +23,7 @@ import com.shahm.myapplication.databinding.FragmentSearchBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.view_activity.ActivityDetails;
-import com.shahm.myapplication.viewmodel.ViewModelMedicines;
+import com.shahm.myapplication.viewmodel.VMMedicines;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class FragmentSearch extends Fragment implements OnMedClick {
     private int currentDrug = 1, totaleAvalabeDrug = 1;
     private AdapterMedicines adapter;
     private List<Medicines> listMed = new ArrayList<>();
-    private ViewModelMedicines viewModel;
+    private VMMedicines viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +52,7 @@ public class FragmentSearch extends Fragment implements OnMedClick {
 
         binding.recyclerMedicines.setHasFixedSize(true);
         binding.recyclerMedicines.setAdapter(adapter);
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(ViewModelMedicines.class);
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicines.class);
         viewModel.getMedicines(1).observe(getViewLifecycleOwner(), medicines -> {
             if (listMed != null){
                 int oldCount = listMed.size();

@@ -16,11 +16,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ViewModelMedicines extends ViewModel {
+public class VMMedicines extends ViewModel {
     private RepositoreMedicines repositoreMedicines;
     private MutableLiveData<List<Medicines>> data;
 
-    public ViewModelMedicines() {
+    public VMMedicines() {
 //        data = new MutableLiveData<>();
         repositoreMedicines = new RepositoreMedicines();
     }

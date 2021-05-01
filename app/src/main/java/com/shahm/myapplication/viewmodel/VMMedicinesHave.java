@@ -8,10 +8,10 @@ import com.shahm.myapplication.repositories.RepoMedicinesHave;
 
 import java.util.List;
 
-public class ViewModelMedicinesHave extends ViewModel {
+public class VMMedicinesHave extends ViewModel {
     private RepoMedicinesHave repoMedicinesHave;
 
-    public ViewModelMedicinesHave(){
+    public VMMedicinesHave(){
         repoMedicinesHave = new RepoMedicinesHave();
     }
     public LiveData<List<MedicinesHave>> getMedicinesHave(int page){

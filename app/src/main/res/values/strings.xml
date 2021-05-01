@@ -26,6 +26,7 @@
     <string name="drugs_i_have">Drugs i have</string>
     <string name="best_selling">best selling</string>
     <string name="sortby">Sort By</string>
+    <string name="search_on_sales">search on sales</string>
     <string-array name="spinner_sort_by">
         <item>week</item>
         <item>month</item>

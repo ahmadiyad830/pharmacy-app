@@ -16,7 +16,7 @@ import com.shahm.myapplication.databinding.FragmentMedicinesHaveBinding;
 import com.shahm.myapplication.listeners.OnMedHaveClick;
 import com.shahm.myapplication.model.MedicinesHave;
 import com.shahm.myapplication.view_activity.ActivityDetails;
-import com.shahm.myapplication.viewmodel.ViewModelMedicinesHave;
+import com.shahm.myapplication.viewmodel.VMMedicinesHave;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     private FragmentMedicinesHaveBinding binding;
-    private ViewModelMedicinesHave viewModel;
+    private VMMedicinesHave viewModel;
     private final List<MedicinesHave> listMed = new ArrayList<>();
     private AdapterMedHave adapter;
 
@@ -36,7 +36,7 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_medicines_have, container, false);
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(ViewModelMedicinesHave.class);
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicinesHave.class);
         binding.recyclerMedicines.setHasFixedSize(true);
         adapter = new AdapterMedHave(listMed, this);
         doInitialization();

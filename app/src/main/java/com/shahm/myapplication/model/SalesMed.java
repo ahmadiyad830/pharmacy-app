@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class SalesMed {
     @SerializedName("Drug ID")
     private String id;
-    @SerializedName("name")
+    @SerializedName("Name")
     private String name;
     @SerializedName("isSachet")
     private String isSachet;

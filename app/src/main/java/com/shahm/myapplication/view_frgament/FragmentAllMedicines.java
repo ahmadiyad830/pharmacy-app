@@ -19,7 +19,7 @@ import com.shahm.myapplication.databinding.FragmentAllMedicinesBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.view_activity.ActivityDetails;
-import com.shahm.myapplication.viewmodel.ViewModelMedicines;
+import com.shahm.myapplication.viewmodel.VMMedicines;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class FragmentAllMedicines extends Fragment implements OnMedClick {
     private FragmentAllMedicinesBinding binding;
-    private ViewModelMedicines viewModel;
+    private VMMedicines viewModel;
     private int currentDrug = 474, increment = 1;
     private AdapterMedicines adapter;
 
@@ -47,7 +47,7 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     }
     private void doInitialization() {
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication()))
-                .get(ViewModelMedicines.class);
+                .get(VMMedicines.class);
         adapter = new AdapterMedicines(listMedicines, this);
         binding.recyclerMedicines.setLayoutManager(new LinearLayoutManager(requireActivity()));
         binding.recyclerMedicines.setHasFixedSize(true);
