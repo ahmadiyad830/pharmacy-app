@@ -27,10 +27,9 @@
     <string name="best_selling">best selling</string>
     <string name="sortby">Sort By</string>
     <string name="search_on_sales">search on sales</string>
+    <string name="calendar">calendar</string>
     <string-array name="spinner_sort_by">
-        <item>week</item>
-        <item>month</item>
-        <item>three month</item>
-        <item>year</item>
+        <item>طنوس</item>
+        <item>الحكمة</item>
     </string-array>
 </resources>

@@ -5,10 +5,6 @@
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
     <item
-        android:id="@+id/addMedicine"
-        android:icon="@drawable/ic_add"
-        android:title="@string/add" />
-    <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search"
         android:title="@string/search" />
@@ -16,4 +12,9 @@
         android:id="@+id/store"
         android:icon="@drawable/ic_store"
         android:title="@string/store" />
+    <item
+        android:id="@+id/calendar"
+        android:icon="@drawable/ic_calendar_with_stats_infographic"
+        android:title="@string/calendar" />
+
 </menu>

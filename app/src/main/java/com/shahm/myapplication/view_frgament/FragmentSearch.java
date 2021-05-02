@@ -1,20 +1,15 @@
 package com.shahm.myapplication.view_frgament;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,6 +23,7 @@ import com.shahm.myapplication.adapter.AdapterMedicines;
 import com.shahm.myapplication.databinding.FragmentSearchBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
+import com.shahm.myapplication.view_activity.ActivityAdd;
 import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicines;
 
@@ -43,23 +39,15 @@ public class FragmentSearch extends Fragment implements OnMedClick {
     private AdapterMedicines adapter;
     private List<Medicines> listMed = new ArrayList<>();
     private VMMedicines viewModel;
-    private SearchView searchView;
-    private CharSequence title = "";
-    private MenuItem setTitle;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-
-    }
-
+    private String query;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false);
         doInitialization();
-        ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.storeToolbar);
+
+
+
         return binding.getRoot();
     }
 
@@ -67,14 +55,20 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         adapter = new AdapterMedicines(listMed, this);
         binding.recyclerMedicines.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
+        binding.recyclerMedicines.setLayoutManager(new WrapContentLinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
         binding.recyclerMedicines.setHasFixedSize(true);
         binding.recyclerMedicines.setAdapter(adapter);
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicines.class);
-        getMedicines();
-        getAllMed();
+        binding.fabSearchRecycler.setOnClickListener(v -> {
+             query = binding.inputSearch.getText().toString().trim();
+            getAllMed();
+        });
+
         binding.camSearch.setOnClickListener(v -> {
             camSearch();
         });
+        binding.setIsEmpty(true);
+
     }
 
     private void getAllMed() {
@@ -91,46 +85,20 @@ public class FragmentSearch extends Fragment implements OnMedClick {
                 }
             }
         });
+        getMedicines();
     }
 
-    private void getMedicines() {
+    private List<Medicines> getMedicines() {
         viewModel.getMedicines(increment).observe(getViewLifecycleOwner(), medicines -> {
-            if (listMed != null ) {
-                int oldCount = listMed.size();
-                listMed.addAll(medicines);
-                adapter.notifyItemRangeInserted(oldCount, listMed.size());
+            for (Medicines model:medicines){
+                if (model.getName().contains(query)){
+                    int oldCount = listMed.size();
+                    listMed.addAll(medicines);
+                    adapter.notifyItemRangeInserted(oldCount, listMed.size());
+                }
             }
         });
-    }
-
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.store_menu, menu);
-        searchView = (SearchView) menu.findItem(R.id.search_menu_store).getActionView();
-        title = menu.findItem(R.id.search_menu_store).getTitle();
-        setTitle = menu.findItem(R.id.search_menu_store);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        searchView.setOnCloseListener(() -> {
-            Toast.makeText(requireActivity(), "true", Toast.LENGTH_SHORT).show();
-            return false;
-        });
-        searchView.setSubmitButtonEnabled(true);
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        super.onCreateOptionsMenu(menu, inflater);
-
+        return listMed;
     }
 
 
@@ -139,7 +107,7 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         intent.setPrompt("for flags");
         intent.setBeepEnabled(true);
         intent.setOrientationLocked(true);
-        intent.setCaptureActivity(FragmentAdd.Capture.class);
+        intent.setCaptureActivity(ActivityAdd.Capture.class);
         intent.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         intent.setCameraId(0);  // Use a specific camera of the device
         intent.setBarcodeImageEnabled(true);
@@ -152,8 +120,8 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() != null) {
-                setTitle.setTitle("");
-                setTitle.setTitle(result.getContents());
+                binding.inputSearch.setText("");
+                binding.inputSearch.setText(result.getContents().trim());
             }
         }
     }
@@ -163,5 +131,21 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
         intent.putExtra("medicines", model);
         startActivity(intent);
+    }
+    public class WrapContentLinearLayoutManager extends LinearLayoutManager {
+
+        public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {
+            super(context, orientation, reverseLayout);
+        }
+
+        //... constructor
+        @Override
+        public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            try {
+                super.onLayoutChildren(recycler, state);
+            } catch (IndexOutOfBoundsException e) {
+                Log.e("TAG", "meet a IOOBE in RecyclerView");
+            }
+        }
     }
 }

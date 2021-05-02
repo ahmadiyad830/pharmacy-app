@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="isEmpty"
             type="Boolean" />
@@ -18,8 +19,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?colorSecondary">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layoutHeader"
@@ -33,22 +34,37 @@
                 app:layout_constraintVertical_bias="0.0">
 
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/store_toolbar"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputSearch"
                     android:layout_width="0dp"
-                    android:layout_height="?actionBarSize"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:background="@null"
+                    android:hint="@string/search_bar"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="?colorAccent"
+                    android:textSize="@dimen/_13sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/cam_search"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:menu="@menu/store_menu" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/cam_search"
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_marginHorizontal="@dimen/_8sdp"
+                    app:tint="?colorPrimaryDark"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_barcode"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -80,8 +96,8 @@
                 android:elevation="6dp"
                 android:focusable="true"
                 android:padding="@dimen/_8sdp"
-                android:visibility="@{isEmpty?View.VISIBLE:View.GONE,default = gone}"
                 android:src="@drawable/ic_search"
+                android:visibility="@{isEmpty?View.VISIBLE:View.GONE,default = gone}"
                 app:elevation="6dp"
                 app:fabSize="auto"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +105,7 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
-                app:tint="@android:color/white"
+                app:tint="?colorPrimaryDark"
                 app:useCompatPadding="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

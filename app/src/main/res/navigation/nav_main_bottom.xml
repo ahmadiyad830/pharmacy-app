@@ -20,11 +20,6 @@
         android:name="com.shahm.myapplication.view_frgament.FragmentSearch"
         android:label="FragmentSearch" />
     <fragment
-        android:id="@+id/addMedicine"
-        tools:layout="@layout/fragment_add"
-        android:name="com.shahm.myapplication.view_frgament.FragmentAdd"
-        android:label="FragmentAdd" />
-    <fragment
         android:id="@+id/fragmentSetting"
         android:name="com.shahm.myapplication.view_frgament.FragmentSetting"
         android:label="fragment_setting"
@@ -38,4 +33,9 @@
             android:id="@+id/action_fragmentStore_to_fragmentSetting"
             app:destination="@id/fragmentSetting" />
     </fragment>
+    <fragment
+        android:id="@+id/calendar"
+        android:name="com.shahm.myapplication.view_frgament.FragmentDepot"
+        android:label="fragment_depot"
+        tools:layout="@layout/fragment_depot" />
 </navigation>

@@ -50,7 +50,10 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
 
     @Override
     public int getItemCount() {
-        return filterList.size();
+        if (filterList!=null&&listMed.size()>0){
+            return filterList.size();
+        }
+        return 0;
     }
     @Override
     public Filter getFilter(){

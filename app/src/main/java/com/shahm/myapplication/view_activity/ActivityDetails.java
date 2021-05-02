@@ -1,5 +1,6 @@
 package com.shahm.myapplication.view_activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -21,7 +22,7 @@ public class ActivityDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
         String[] model = getIntent().getStringArrayExtra("listMed");
-        if (model!=null){
+        if (model != null) {
             binding.setId(model[0]);
             binding.setBarcode(model[1]);
             binding.setName(model[2]);
@@ -50,12 +51,19 @@ public class ActivityDetails extends AppCompatActivity {
 
 
         binding.btnBack.setOnClickListener(v -> {
-            onBackPressed();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
 
 
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onStart() {
