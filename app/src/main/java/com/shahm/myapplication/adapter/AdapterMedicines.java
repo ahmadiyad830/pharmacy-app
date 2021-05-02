@@ -3,29 +3,34 @@ package com.shahm.myapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ItemMedicinesBinding;
+import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.ViewHolder> {
+public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.ViewHolder> implements Filterable {
     private LayoutInflater inflater;
-    private List<Medicines> listMedicines;
+    private List<Medicines> listMed;
+    private List<Medicines> filterList;
     private OnMedClick itemClick;
-    public AdapterMedicines(List<Medicines> listMedicines, OnMedClick onMedClick) {
-        this.listMedicines = listMedicines;
+    public AdapterMedicines(List<Medicines> listMed, OnMedClick onMedClick) {
+        this.listMed = listMed;
+        filterList = this.listMed;
         itemClick = onMedClick;
     }
 
-    public void setListMedicines(List<Medicines> listMedicines) {
-        this.listMedicines = listMedicines;
+    public void setListMed(List<Medicines> listMed) {
+        this.listMed = listMed;
     }
     @NonNull
     @Override
@@ -39,14 +44,45 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(listMedicines.get(position));
-        boolean isExpanded = listMedicines.get(position).isExpanded();
+        holder.bind(listMed.get(position));
+        boolean isExpanded = listMed.get(position).isExpanded();
         holder.binding.constrainExpanded.setVisibility(isExpanded? View.VISIBLE:View.GONE);
     }
 
     @Override
     public int getItemCount() {
-        return listMedicines.size();
+        return filterList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return  new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String key = constraint.toString();
+                if (key.isEmpty()){
+                    filterList = listMed;
+                }else {
+                    List<Medicines> list = new ArrayList<>();
+                    for(Medicines model:listMed){
+                        if (model.getName().toLowerCase().contains(key.toLowerCase())){
+                            list.add(model);
+                        }
+                    }
+                    filterList= list;
+                }
+                FilterResults results = new FilterResults();
+                results.values = filterList;
+                results.count = filterList.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filterList = (ArrayList<Medicines>)results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -61,7 +97,7 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
             binding.setMedicines(model);
             binding.setPosition(String.valueOf(getAdapterPosition()));
             binding.container.setOnClickListener(v -> {
-                listMedicines.get(getAdapterPosition()).setExpanded(!model.isExpanded());
+                listMed.get(getAdapterPosition()).setExpanded(!model.isExpanded());
                 notifyItemChanged(getAdapterPosition());
             });
             binding.btnDetails.setOnClickListener(v -> {

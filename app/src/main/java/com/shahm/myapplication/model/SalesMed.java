@@ -20,6 +20,12 @@ public class SalesMed {
     @SerializedName("date")
     private String date;
 
+    @Override
+    public String toString() {
+        return "SalesMed{" +"name='" + name + '\'' + '}';
+    }
+
+
     public String getId() {
         return id;
     }

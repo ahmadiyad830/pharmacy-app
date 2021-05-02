@@ -3,6 +3,7 @@ package com.shahm.myapplication.network;
 import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.model.MedicinesHave;
 import com.shahm.myapplication.model.SalesMed;
+import com.shahm.myapplication.model.SalesPharmacy;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ public interface ApiService {
     Call<List<MedicinesHave>>getMedicinesHave(@Query("mydrug")int page);
     @GET("?sales=sales")
     Call<List<SalesMed>> getSales(@Query("sales") int page);
+    @GET("?store=name&month=m")
+    Call<List<SalesPharmacy>> getSalesPharmacy(@Query("name")String name, int monthNum);
 
 
     @GET("api/?drug=3")

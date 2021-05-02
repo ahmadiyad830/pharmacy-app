@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/search_menu_store"
-        android:title=""
+    <item
+        android:id="@+id/search_menu_store"
         android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        android:title=""
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/toolbar_store_setting"
         android:title="@string/setting" />
 
-    <item android:title="@string/sortby" android:visible="false">
+    <item
+        android:title="@string/sortby"
+        android:visible="false">
         <menu>
             <item
                 android:id="@+id/menu_best_selling"
@@ -21,7 +24,6 @@
                 android:visible="false" />
         </menu>
     </item>
-
 
 
 </menu>

@@ -2,12 +2,19 @@ package com.shahm.myapplication.view_frgament;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -30,19 +37,28 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class FragmentStore extends Fragment implements AdapterView.OnItemSelectedListener, OnSalesClick {
+
     private FragmentStoreBinding binding;
     private VMSales viewModel;
     private int increment = 1;
     private int currentDrug = 10000;
     private ARFilterSales adapter;
     private List<SalesMed> listSales = new ArrayList<>();
+    private SearchView searchView;
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         doInitialization(inflater, container);
 
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.storeToolbar);
 
         return binding.getRoot();
     }
@@ -55,10 +71,37 @@ public class FragmentStore extends Fragment implements AdapterView.OnItemSelecte
         binding.recycler.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new ARFilterSales(listSales, this);
         binding.recycler.setAdapter(adapter);
+
         listenerRecycler();
-        getListSales(increment);
+        getListSales();
 //        filterList();
     }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.store_menu, menu);
+        searchView = (SearchView) menu.findItem(R.id.search_menu_store).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(() -> {
+            Toast.makeText(requireActivity(), "true", Toast.LENGTH_SHORT).show();
+            return false;
+        });
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
 
     private void listenerRecycler() {
         binding.recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -68,7 +111,7 @@ public class FragmentStore extends Fragment implements AdapterView.OnItemSelecte
                 if (recyclerView.canScrollVertically(1)) {
                     if (increment <= currentDrug) {
                         increment++;
-                        getListSales(increment);
+                        getListSales();
                     }
 
                 }
@@ -77,13 +120,13 @@ public class FragmentStore extends Fragment implements AdapterView.OnItemSelecte
     }
 
 
-    private void getListSales(int increment) {
+    private void getListSales() {
         viewModel.getSales(increment).observe(getViewLifecycleOwner(), salesMed -> {
             if (listSales != null) {
-                listSales.addAll(salesMed);
-                adapter.setAllListMed(listSales);
                 int oldSize = listSales.size();
-                adapter.notifyItemRangeChanged(oldSize, listSales.size());
+                listSales.addAll(salesMed);
+                adapter.notifyItemRangeInserted(oldSize, listSales.size());
+
             }
         });
     }
@@ -129,5 +172,4 @@ public class FragmentStore extends Fragment implements AdapterView.OnItemSelecte
     public void onItemClick(SalesMed model) {
 
     }
-
 }

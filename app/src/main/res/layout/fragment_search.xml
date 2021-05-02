@@ -33,53 +33,16 @@
                 app:layout_constraintVertical_bias="0.0">
 
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/inputSearch"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/store_toolbar"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@null"
-                    android:hint="@string/search_bar"
-                    android:imeOptions="actionDone"
-                    android:importantForAutofill="no"
-                    android:includeFontPadding="false"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:maxLines="1"
-                    android:paddingStart="@dimen/_12sdp"
-                    android:paddingEnd="@dimen/_12sdp"
-                    android:singleLine="true"
-                    android:textDirection="anyRtl"
-                    android:textColorHint="@color/white"
-                    android:textSize="@dimen/_13sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/imageBack"
-                    app:layout_constraintStart_toStartOf="@+id/remove_text_search"
-                    tools:layout_editor_absoluteY="0dp" />
-
-                <ImageView
-                    android:id="@+id/remove_text_search"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginStart="20dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_close"
-                    android:visibility="@{isEmpty?View.VISIBLE:View.GONE,default = gone}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/cam_search"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.52"
-                    app:tint="@color/white" />
-
-                <ImageView
-                    android:id="@+id/imageBack"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_back"
-                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_height="?actionBarSize"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cam_search"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
+                    app:menu="@menu/store_menu" />
 
                 <ImageView
                     android:id="@+id/cam_search"

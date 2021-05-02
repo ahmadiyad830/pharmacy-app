@@ -2,18 +2,24 @@ package com.shahm.myapplication.view_frgament;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -32,17 +38,28 @@ import java.util.List;
 public class FragmentSearch extends Fragment implements OnMedClick {
 
     private FragmentSearchBinding binding;
-    private int currentDrug = 1, totaleAvalabeDrug = 1;
+    private int increment = 1;
+    private int currentDrug = 10000;
     private AdapterMedicines adapter;
     private List<Medicines> listMed = new ArrayList<>();
     private VMMedicines viewModel;
+    private SearchView searchView;
+    private CharSequence title = "";
+    private MenuItem setTitle;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false);
         doInitialization();
-        binding.inputSearch.addTextChangedListener(searchInList);
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(binding.storeToolbar);
         return binding.getRoot();
     }
 
@@ -53,76 +70,71 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         binding.recyclerMedicines.setHasFixedSize(true);
         binding.recyclerMedicines.setAdapter(adapter);
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicines.class);
-        viewModel.getMedicines(1).observe(getViewLifecycleOwner(), medicines -> {
-            if (listMed != null){
-                int oldCount = listMed.size();
-                listMed.addAll(medicines);
-                adapter.notifyItemRangeInserted(oldCount, listMed.size());
-            }
-        });
+        getMedicines();
+        getAllMed();
         binding.camSearch.setOnClickListener(v -> {
             camSearch();
         });
     }
 
-    private final TextWatcher searchInList = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    private void getAllMed() {
+        binding.recyclerMedicines.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (recyclerView.canScrollVertically(1)) {
+                    if (increment <= currentDrug) {
+                        increment++;
+                        getMedicines();
+                    }
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            String textInput = s.toString().trim();
-            boolean isEmpty = textInput.isEmpty();
-            if (before > 0 && before > s.length() && !isEmpty) {
-                currentDrug = 1;
-                totaleAvalabeDrug = 1;
-                listMed.clear();
-                searchDrug(textInput);
-                adapter.notifyDataSetChanged();
-            } else if (isEmpty) {
-                listMed.clear();
-                adapter.notifyDataSetChanged();
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            String textInput = s.toString().trim();
-            boolean isEmpty = s.toString().trim().isEmpty();
-            binding.setIsEmpty(true);
-            binding.fabSearchRecycler.setOnClickListener(v -> {
-                if (!isEmpty) {
-                    currentDrug = 1;
-                    totaleAvalabeDrug = 1;
-//                    listMed.clear();
-                    searchDrug(textInput);
-                    adapter.notifyDataSetChanged();
                 }
-            });
-            binding.removeTextSearch.setOnClickListener(v -> {
-                if (!isEmpty) {
-                    s.clear();
-                    listMed.clear();
-                    adapter.notifyDataSetChanged();
-                }
-            });
-        }
-
-    };
-
-    private void searchDrug(String textInput) {
-        for (int i = 0; i < listMed.size(); i++) {
-            if (listMed.get(i).getName().equals(textInput)) {
-                Toast.makeText(requireActivity(), listMed.get(i).getName(), Toast.LENGTH_SHORT).show();
-                listMed.clear();
-                listMed.add(listMed.get(i));
-                adapter.notifyDataSetChanged();
             }
-        }
+        });
     }
-    private void camSearch(){
+
+    private void getMedicines() {
+        viewModel.getMedicines(increment).observe(getViewLifecycleOwner(), medicines -> {
+            if (listMed != null ) {
+                int oldCount = listMed.size();
+                listMed.addAll(medicines);
+                adapter.notifyItemRangeInserted(oldCount, listMed.size());
+            }
+        });
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.store_menu, menu);
+        searchView = (SearchView) menu.findItem(R.id.search_menu_store).getActionView();
+        title = menu.findItem(R.id.search_menu_store).getTitle();
+        setTitle = menu.findItem(R.id.search_menu_store);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        searchView.setOnCloseListener(() -> {
+            Toast.makeText(requireActivity(), "true", Toast.LENGTH_SHORT).show();
+            return false;
+        });
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+
+    private void camSearch() {
         IntentIntegrator intent = IntentIntegrator.forSupportFragment(this);
         intent.setPrompt("for flags");
         intent.setBeepEnabled(true);
@@ -137,12 +149,11 @@ public class FragmentSearch extends Fragment implements OnMedClick {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if (result!=null){
-            if (result.getContents()!=null){
-                binding.inputSearch.setText("");
-                binding.inputSearch.setText(result.getContents());
-                searchDrug(binding.inputSearch.getText().toString().trim());
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() != null) {
+                setTitle.setTitle("");
+                setTitle.setTitle(result.getContents());
             }
         }
     }

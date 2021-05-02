@@ -1,5 +1,6 @@
 package com.shahm.myapplication.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -19,64 +20,18 @@ import java.util.List;
 
 public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde> implements Filterable {
     private LayoutInflater inflater;
+    private List<SalesMed> listMed;
     private List<SalesMed> filterList;
-    private List<SalesMed> medListAll;
-    public ARFilterSales(List<SalesMed> filterList, OnSalesClick model) {
-        this.filterList = filterList;
-        this.medListAll = new ArrayList<>(filterList);
-        this.model = model;
+
+
+    public ARFilterSales(List<SalesMed> listMed, OnSalesClick salesClick) {
+        this.listMed = listMed;
+        filterList = this.listMed;
+        this.salesClick = salesClick;
     }
 
-    public void setAllListMed(List<SalesMed> allListMed) {
-        filterList = allListMed;
-    }
-
-    private OnSalesClick model;
-
-    @Override
-    public Filter getFilter() {
-        return filter;
-    }
-
-    private Filter filter = new Filter() {
-        //        run on background thread
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<SalesMed> filterList = new ArrayList<>();
-            if (constraint==null|| constraint.length()==0){
-                filterList.addAll(medListAll);
-//                notifyDataSetChanged();
-            }else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-                for (SalesMed model: medListAll) {
-                    if (model.getName().toLowerCase().contains(filterPattern)){
-                        filterList.add(model);
-                    }
-                }
-            }
-//            if (constraint.toString().isEmpty()) {
-//                filterList.addAll(medListAll);
-//            } else {
-//                for (SalesMed model : medListAll) {
-//                    if (model.getName().toLowerCase().contains(constraint.toString().toLowerCase())) {
-//                        filterList.add(model);
-//                    }
-//                }
-//            }
-            FilterResults results = new FilterResults();
-            results.values = filterList;
-            return results;
-        }
-
-        //            run on ui thread
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            filterList.clear();
-            filterList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
+    private OnSalesClick salesClick;
+    private Context context;
 
     @NonNull
     @Override
@@ -84,19 +39,83 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
+        context = parent.getContext();
         ItemSalesBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_sales, parent, false);
         return new ViewHolde(binding);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolde holder, int position) {
-        holder.bind(filterList.get(position));
+        holder.bind(listMed.get(position));
     }
 
     @Override
     public int getItemCount() {
         return filterList.size();
     }
+    @Override
+    public Filter getFilter(){
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String key = constraint.toString();
+                if (key.isEmpty()){
+                    filterList = listMed;
+                }else {
+                    List<SalesMed> list = new ArrayList<>();
+                    for(SalesMed model:listMed){
+                        if (model.getName().toLowerCase().contains(key.toLowerCase())){
+                            list.add(model);
+                        }
+                    }
+                    filterList= list;
+                }
+                FilterResults results = new FilterResults();
+                results.values = filterList;
+                results.count = filterList.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filterList = (ArrayList<SalesMed>)results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+//    private Filter filter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            List<SalesMed> list = new ArrayList<>();
+//
+//
+//            if (constraint == null || constraint.toString().length() == 0) {
+//
+//                list.addAll(listMed);
+//            } else {
+//                for (SalesMed model : list) {
+//                    if (model.getName().contains(constraint.toString())) {
+//                        list.add(model);
+//                    }
+//                }
+//            }
+//            FilterResults results = new FilterResults();
+//
+//            results.values = list;
+//            results.count = list.size();
+//            return results;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            moveList.clear();
+//            int oldSize = moveList.size();
+//
+//            moveList.addAll((Collection<? extends SalesMed>) results.values);
+//            notifyDataSetChanged();
+//            Toast.makeText(context, "" + getItemCount() + "", Toast.LENGTH_SHORT).show();
+//        }
+//    };
 
     public class ViewHolde extends RecyclerView.ViewHolder {
         private ItemSalesBinding binding;
@@ -108,7 +127,9 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
 
         private void bind(SalesMed model) {
             binding.setModel(model);
+            binding.getRoot().setOnClickListener(v -> {
+                salesClick.onItemClick(model);
+            });
         }
-
     }
 }

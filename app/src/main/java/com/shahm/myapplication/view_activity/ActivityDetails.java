@@ -21,18 +21,20 @@ public class ActivityDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
         String[] model = getIntent().getStringArrayExtra("listMed");
+        if (model!=null){
+            binding.setId(model[0]);
+            binding.setBarcode(model[1]);
+            binding.setName(model[2]);
+            binding.setScientific(model[3]);
+            binding.setConcentration(model[4]);
+            binding.setDosageform(model[5]);
+            binding.setNotes(model[6]);
+            binding.setStore(model[7]);
+            binding.setSachet(model[8]);
+            binding.setLocation(model[9]);
+            binding.setQuantity(model[10]);
+        }
 
-        binding.setId(model[0]);
-        binding.setBarcode(model[1]);
-        binding.setName(model[2]);
-        binding.setScientific(model[3]);
-        binding.setConcentration(model[4]);
-        binding.setDosageform(model[5]);
-        binding.setNotes(model[6]);
-        binding.setStore(model[7]);
-        binding.setSachet(model[8]);
-        binding.setLocation(model[9]);
-        binding.setQuantity(model[10]);
 //        if (getIntent().getSerializableExtra("medicines") instanceof Medicines){
 //            Medicines model = (Medicines) getIntent().getSerializableExtra("medicines");
 //            if (model != null)
