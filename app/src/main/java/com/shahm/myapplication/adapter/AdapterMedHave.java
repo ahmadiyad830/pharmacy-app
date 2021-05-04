@@ -14,7 +14,7 @@ import com.shahm.myapplication.listeners.OnMedHaveClick;
 import com.shahm.myapplication.model.MedicinesHave;
 
 import java.util.List;
-
+//https://www.blacktools.io/sapi/?mydrug=1
 public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHolder> {
     private LayoutInflater inflater;
     private List<MedicinesHave> listMed;

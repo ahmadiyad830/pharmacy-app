@@ -1,10 +1,11 @@
-package com.shahm.myapplication.view_frgament;
+package com.shahm.myapplication.view_frgament.home_ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -35,16 +36,21 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     private int currentDrug = 474, increment = 1;
     private AdapterMedicines adapter;
 
+
     private final List<Medicines> listMedicines = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_all_medicines, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_medicines, container, false);
         doInitialization();
         getMedicines(increment);
+//        postMedicine();
+        postMedicine();
         return binding.getRoot();
     }
+
     private void doInitialization() {
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication()))
                 .get(VMMedicines.class);
@@ -72,6 +78,7 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
             }
         });
     }
+
     private List<Medicines> getMedicines(int page) {
         toggleLoading();
         viewModel.getMedicines(page).observe(getViewLifecycleOwner(), medicines -> {
@@ -86,12 +93,34 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
         });
         return listMedicines;
     }
+
     private void toggleLoading() {
         if (currentDrug == 1) {
             binding.setIsLoading(binding.getIsLoading() == null || !binding.getIsLoading());
         } else {
             binding.setIsLoadingMore(binding.getIsLoadingMore() == null || !binding.getIsLoadingMore());
         }
+    }
+
+    private void postMedicine() {
+        Medicines model = new Medicines(
+                "test model",
+                "test model",
+                "test model",
+                "test model",
+                "test model",
+                "test store",
+                "1",
+                "test location",
+                "1");
+        viewModel.postData(model).observe(requireActivity(), responseMedicines -> {
+            if (responseMedicines != null) {
+                Toast.makeText(requireActivity(), responseMedicines.postData().get(0).getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
+//        viewModel.postMedicine(model).observe(this,medicines -> {
+//            Toast.makeText(requireActivity(), ""+medicines.getName(), Toast.LENGTH_SHORT).show();
+//        });
     }
 
     @Override

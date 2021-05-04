@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main_bottom"
-    app:startDestination="@id/home">
+    app:startDestination="@id/sales">
 
     <fragment
         android:id="@+id/home"
-        android:name="com.shahm.myapplication.view_frgament.FragmentHome"
+        android:name="com.shahm.myapplication.view_frgament.home_ui.FragmentHome"
         tools:layout="@layout/fragment_home"
         android:label="FragmentHome" >
         <action
@@ -25,9 +25,9 @@
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
-        android:id="@+id/store"
-        tools:layout="@layout/fragment_store"
-        android:name="com.shahm.myapplication.view_frgament.FragmentStore"
+        android:id="@+id/sales"
+        tools:layout="@layout/fragment_pharmacy_sales"
+        android:name="com.shahm.myapplication.view_frgament.FragmentPharmacySales"
         android:label="FragmentStore" >
         <action
             android:id="@+id/action_fragmentStore_to_fragmentSetting"
@@ -35,7 +35,12 @@
     </fragment>
     <fragment
         android:id="@+id/calendar"
-        android:name="com.shahm.myapplication.view_frgament.FragmentDepot"
+        android:name="com.shahm.myapplication.view_frgament.analyze.FragmentDepotAnalyze"
         android:label="fragment_depot"
-        tools:layout="@layout/fragment_depot" />
+        tools:layout="@layout/fragment_depot_analyze" />
+    <fragment
+        android:id="@+id/analyze"
+        tools:layout="@layout/fragment_analyze"
+        android:name="com.shahm.myapplication.view_frgament.analyze.FragmentAnalyze"
+        android:label="FragmentAnalyze" />
 </navigation>

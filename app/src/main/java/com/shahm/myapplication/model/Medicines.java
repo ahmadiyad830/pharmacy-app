@@ -30,6 +30,18 @@ public class Medicines  implements Serializable {
 
     private boolean expanded = false;
 
+    public Medicines(String name, String scientific, String concentration, String dosageform, String notes, String store, String sachet, String location, String quantity) {
+        this.name = name;
+        this.scientific = scientific;
+        this.concentration = concentration;
+        this.dosageform = dosageform;
+        this.notes = notes;
+        this.store = store;
+        this.sachet = sachet;
+        this.location = location;
+        this.quantity = quantity;
+    }
+
     public Medicines(String barcode, String name, String scientific, String concentration, String dosageform, String notes, String store, String sachet, String location, String quantity) {
 //        super(barcode,name,scientific,concentration,dosageform,notes,store,sachet,location,quantity);
         this.barcode = barcode;

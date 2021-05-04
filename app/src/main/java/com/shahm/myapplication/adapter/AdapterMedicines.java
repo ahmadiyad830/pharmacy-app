@@ -17,7 +17,7 @@ import com.shahm.myapplication.model.Medicines;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//https://www.blacktools.io/sapi/?alldrug=1
 public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.ViewHolder> implements Filterable {
     private LayoutInflater inflater;
     private List<Medicines> listMed;

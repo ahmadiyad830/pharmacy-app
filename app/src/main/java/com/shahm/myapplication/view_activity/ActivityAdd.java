@@ -92,7 +92,6 @@ public class ActivityAdd extends AppCompatActivity {
             } else Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
     }
 
-
     public static class Capture extends CaptureActivity {
 
     }

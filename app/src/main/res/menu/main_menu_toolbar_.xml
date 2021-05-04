@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/toolbar_setting"
-        android:title="@string/setting" />
-    <item android:title="@string/sort">
-        <menu>
-            <item
-                android:id="@+id/toolbar_Best_selling"
-                android:title="@string/best_selling" />
-            <item
-                android:id="@+id/toolbar_all_drug"
-                android:title="@string/all_drugs" />
-            <item
-                android:id="@+id/toolbar_i_have"
-                android:title="@string/drugs_i_have" />
-        </menu>
-    </item>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_search"
+        android:id="@+id/item_search"
+        android:title="@string/search"
+        app:showAsAction="always"/>
 </menu>

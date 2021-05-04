@@ -82,7 +82,7 @@ public class ActivityDetails extends AppCompatActivity {
             BitMatrix matrix = writer.encode(barCode, BarcodeFormat.CODABAR, w, h);
             BarcodeEncoder encoder = new BarcodeEncoder();
             Bitmap bitmap = encoder.createBitmap(matrix);
-            binding.imageTVShow.setImageBitmap(bitmap);
+//            binding.imageTVShow.setImageBitmap(bitmap);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.shahm.myapplication.model.SalesMed" />
+            type="com.shahm.myapplication.model.SalesPharmacy" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

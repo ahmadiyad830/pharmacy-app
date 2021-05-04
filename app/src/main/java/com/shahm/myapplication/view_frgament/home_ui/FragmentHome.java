@@ -1,4 +1,4 @@
-package com.shahm.myapplication.view_frgament;
+package com.shahm.myapplication.view_frgament.home_ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.shahm.myapplication.R;
@@ -44,22 +43,22 @@ public class FragmentHome extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.main_menu_toolbar_, menu);
+//        inflater.inflate(R.menu.main_menu_toolbar_, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.toolbar_i_have) {
-//            binding.recyclerMedicines.setAdapter(null);
-//            adapter.notifyDataSetChanged();
-        } else if (id == R.id.toolbar_all_drug) {
-//            adapter.setListMedicines(getMedicines(1));
-        } else if (id == R.id.toolbar_setting) {
-
-            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_home_to_fragmentSetting);
-        }
+//        int id = item.getItemId();
+//        if (id == R.id.toolbar_i_have) {
+////            binding.recyclerMedicines.setAdapter(null);
+////            adapter.notifyDataSetChanged();
+//        } else if (id == R.id.toolbar_all_drug) {
+////            adapter.setListMedicines(getMedicines(1));
+//        } else if (id == R.id.toolbar_setting) {
+//
+//            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_home_to_fragmentSetting);
+//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -83,11 +82,11 @@ public class FragmentHome extends Fragment {
                 binding.viewPager2, (tab, position) -> {
             switch (position) {
                 case 1:
-                    tab.setText("All Medicines");
+                    tab.setText("Medicines i Have");
                     break;
                 case 0:
                 default:
-                    tab.setText("Medicines i Have");
+                    tab.setText("All Medicines");
                     break;
 
             }

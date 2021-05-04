@@ -1,20 +1,38 @@
 package com.shahm.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
-
+//
 public class SalesPharmacy {
+    @SerializedName("Drug ID")
+    private String id;
     @SerializedName("Name")
     private String name;
+    @SerializedName("isSachet")
+    private String isSachet;
+    @SerializedName("Concentraion")
+    private String concentraion;
+    @SerializedName("DosageForm")
+    private String DosageForm;
     @SerializedName("Store")
-    private String store;
-    @SerializedName("Time Statics")
-    private String timeStatics;
-    @SerializedName("Available")
-    private String available;
-    @SerializedName("Purchases")
-    private int purchases;
-    @SerializedName("Sales")
-    private int sales;
+    private String Store;
+    @SerializedName("price")
+    private String price;
+    @SerializedName("date")
+    private String date;
+
+    @Override
+    public String toString() {
+        return "SalesMed{" +"name='" + name + '\'' + '}';
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -24,56 +42,53 @@ public class SalesPharmacy {
         this.name = name;
     }
 
+    public String getIsSachet() {
+        return isSachet;
+    }
+
+    public void setIsSachet(String isSachet) {
+        this.isSachet = isSachet;
+    }
+
+    public String getConcentraion() {
+        return concentraion;
+    }
+
+    public void setConcentraion(String concentraion) {
+        this.concentraion = concentraion;
+    }
+
+    public String getDosageForm() {
+        return DosageForm;
+    }
+
+    public void setDosageForm(String dosageForm) {
+        DosageForm = dosageForm;
+    }
+
     public String getStore() {
-        return store;
+        return Store;
     }
 
     public void setStore(String store) {
-        this.store = store;
+        Store = store;
     }
 
-    public String getTimeStatics() {
-        return timeStatics;
+    public String getPrice() {
+        return price;
     }
 
-    public void setTimeStatics(String timeStatics) {
-        this.timeStatics = timeStatics;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
-    public String getAvailable() {
-        return available;
+    public String getDate() {
+        return date;
     }
 
-    public void setAvailable(String available) {
-        this.available = available;
+    public void setDate(String date) {
+        this.date = date;
     }
-
-    public int getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(int purchases) {
-        this.purchases = purchases;
-    }
-
-    public int getSales() {
-        return sales;
-    }
-
-    public void setSales(int sales) {
-        this.sales = sales;
-    }
-
-    public double getAverageSale() {
-        return averageSale;
-    }
-
-    public void setAverageSale(double averageSale) {
-        this.averageSale = averageSale;
-    }
-
-    @SerializedName("Average Sale")
-    private double averageSale;
 
 
 }

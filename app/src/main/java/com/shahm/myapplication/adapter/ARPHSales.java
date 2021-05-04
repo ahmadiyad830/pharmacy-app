@@ -11,20 +11,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shahm.myapplication.R;
-import com.shahm.myapplication.databinding.ItemSalesBinding;
+import com.shahm.myapplication.databinding.ItemPharmacySalesBinding;
 import com.shahm.myapplication.listeners.OnSalesClick;
-import com.shahm.myapplication.model.SalesMed;
+import com.shahm.myapplication.model.SalesPharmacy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde> implements Filterable {
+public class ARPHSales extends RecyclerView.Adapter<ARPHSales.ViewHolder> implements Filterable {
     private LayoutInflater inflater;
-    private List<SalesMed> listMed;
-    private List<SalesMed> filterList;
+    private List<SalesPharmacy> listMed;
+    private List<SalesPharmacy> filterList;
 
 
-    public ARFilterSales(List<SalesMed> listMed, OnSalesClick salesClick) {
+    public ARPHSales(List<SalesPharmacy> listMed, OnSalesClick salesClick) {
         this.listMed = listMed;
         filterList = this.listMed;
         this.salesClick = salesClick;
@@ -35,16 +35,16 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
 
     @NonNull
     @Override
-    public ViewHolde onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.getContext());
         }
         context = parent.getContext();
-        ItemSalesBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_sales, parent, false);
-        return new ViewHolde(binding);
+        ItemPharmacySalesBinding binding = DataBindingUtil.inflate(inflater, R.layout.item_pharmacy_sales, parent, false);
+        return new ViewHolder(binding);
     }
     @Override
-    public void onBindViewHolder(@NonNull ViewHolde holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(listMed.get(position));
     }
 
@@ -64,8 +64,8 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
                 if (key.isEmpty()){
                     filterList = listMed;
                 }else {
-                    List<SalesMed> list = new ArrayList<>();
-                    for(SalesMed model:listMed){
+                    List<SalesPharmacy> list = new ArrayList<>();
+                    for(SalesPharmacy model:listMed){
                         if (model.getName().toLowerCase().contains(key.toLowerCase())){
                             list.add(model);
                         }
@@ -80,7 +80,7 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
 
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                filterList = (ArrayList<SalesMed>)results.values;
+                filterList = (ArrayList<SalesPharmacy>)results.values;
                 notifyDataSetChanged();
             }
         };
@@ -120,15 +120,15 @@ public class ARFilterSales extends RecyclerView.Adapter<ARFilterSales.ViewHolde>
 //        }
 //    };
 
-    public class ViewHolde extends RecyclerView.ViewHolder {
-        private ItemSalesBinding binding;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private ItemPharmacySalesBinding binding;
 
-        public ViewHolde(ItemSalesBinding binding) {
+        public ViewHolder(ItemPharmacySalesBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        private void bind(SalesMed model) {
+        private void bind(SalesPharmacy model) {
             binding.setModel(model);
             binding.getRoot().setOnClickListener(v -> {
                 salesClick.onItemClick(model);

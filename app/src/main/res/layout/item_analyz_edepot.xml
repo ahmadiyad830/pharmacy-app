@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.shahm.myapplication.model.Depot" />
+            type="com.shahm.myapplication.model.AnalyzeDepot" />
 
     </data>
 
@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
                 <RelativeLayout
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_25sdp"
@@ -41,11 +42,13 @@
                     app:layout_constraintStart_toEndOf="@+id/textView6"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <ImageView
+                        android:id="@+id/go_details"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:layout_centerInParent="true"
-                        android:text="@{String.valueOf(model.sales)}" />
+                        android:src="@drawable/ic_east"
+                        app:tint="?colorPrimaryDark" />
                 </RelativeLayout>
 
                 <TextView
@@ -53,14 +56,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:text="@{model.name}"
                     android:maxLength="25"
                     android:maxLines="1"
+                    android:text="@{model.name}"
                     android:textColor="?colorAccent"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.062"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,7 +85,6 @@
                     android:id="@+id/cardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     app:cardCornerRadius="@dimen/_6sdp"
                     app:cardElevation="@dimen/_3sdp"
                     app:cardUseCompatPadding="true"
@@ -98,31 +100,66 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="@dimen/_5sdp"
+                            android:layout_height="@dimen/_5sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text='@{"sales: "+String.valueOf(model.sales)}'
+                            android:textColor="?colorAccent"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.899"
+                            app:layout_constraintStart_toEndOf="@+id/view"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text='@{"Average Sale: "+String.valueOf(model.averageSale)}'
+                            android:textColor="?colorAccent"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="normal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/view"
+                            app:layout_constraintTop_toBottomOf="@+id/textView8"
+                            app:layout_constraintVertical_bias="1.0" />
+
                         <TextView
                             android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_12sdp"
-                            android:layout_marginTop="@dimen/_12sdp"
                             android:text='@{"purchases: "+String.valueOf(model.purchases)}'
                             android:textColor="?colorAccent"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="normal"
+                            app:layout_constraintEnd_toStartOf="@+id/view"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/textView9"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_12sdp"
                             android:text='@{"Available: "+model.available}'
                             android:textColor="?colorAccent"
                             android:textSize="@dimen/_14ssp"
                             android:textStyle="normal"
-                            app:layout_constraintEnd_toEndOf="@+id/textView7"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/textView7"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/view"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView7"
+                            app:layout_constraintVertical_bias="1.0" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 

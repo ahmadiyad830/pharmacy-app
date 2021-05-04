@@ -28,6 +28,14 @@
     <string name="sortby">Sort By</string>
     <string name="search_on_sales">search on sales</string>
     <string name="calendar">calendar</string>
+    <string name="pharmacy_sales">pharmacy sales</string>
+    <string name="month">month</string>
+    <string name="sales">sales</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="scan">scan</string>
+    <string name="delete">delete</string>
+    <string name="update">update</string>
     <string-array name="spinner_sort_by">
         <item>طنوس</item>
         <item>الحكمة</item>

@@ -17,81 +17,42 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view_activity.MainActivity">
-        <fragment
-            android:id="@+id/fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        tools:context=".view_activity.MainActivity"
+        tools:openDrawer="start">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="?actionBarSize"
-            ads:defaultNavHost="true"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintStart_toStartOf="parent"
-            ads:layout_constraintTop_toTopOf="parent"
-            ads:navGraph="@navigation/nav_main_bottom" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinatorLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            ads:layout_constraintBottom_toBottomOf="parent"
-            ads:layout_constraintEnd_toEndOf="parent"
-            ads:layout_constraintHorizontal_bias="0.5"
-            ads:layout_constraintStart_toStartOf="parent">
+            <include
+                android:id="@+id/app_bar_layout"
+                layout="@layout/app_bar_main" />
 
-            <com.google.android.material.bottomappbar.BottomAppBar
-                android:id="@+id/bottom_bar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:layout_gravity="bottom"
-
-                android:background="?attr/colorSecondary"
-                ads:fabAlignmentMode="center"
-                ads:fabCradleMargin="@dimen/_10sdp"
-                ads:fabCradleRoundedCornerRadius="@dimen/_5sdp"
-                ads:fabCradleVerticalOffset="@dimen/_10sdp"
-                ads:fabAnimationMode="slide">
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottom_nav"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    ads:menu="@menu/bottom_nav_menu"
-                    app:defaultNavHost="true"
-                    app:itemIconSize="@dimen/_20sdp"
-                    app:navGraph="@navigation/nav_main_bottom" />
-            </com.google.android.material.bottomappbar.BottomAppBar>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab_scroll_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:elevation="6dp"
-                android:focusable="true"
-                android:src="@drawable/ic_add"
-                ads:layout_anchor="@id/bottom_nav"
-                ads:layout_anchorGravity="bottom"
-                ads:layout_behavior="com.google.android.material.floatingactionbutton.FloatingActionButton$Behavior"
-                app:elevation="6dp"
-                app:fabSize="auto"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:pressedTranslationZ="12dp"
-                app:tint="?colorSecondaryVariant"
-                app:useCompatPadding="true" />
-
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
 
 
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@color/overlayBackground"
+            ads:headerLayout="@layout/layout_header"
+            app:itemIconTint="@color/main_color"
+            app:itemTextColor="@android:color/white"
+            app:menu="@menu/bottom_nav_menu" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

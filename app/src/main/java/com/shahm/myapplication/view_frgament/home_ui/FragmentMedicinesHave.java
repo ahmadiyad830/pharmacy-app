@@ -1,4 +1,4 @@
-package com.shahm.myapplication.view_frgament;
+package com.shahm.myapplication.view_frgament.home_ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.adapter.AdapterMedHave;
@@ -31,6 +34,7 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     private VMMedicinesHave viewModel;
     private final List<MedicinesHave> listMed = new ArrayList<>();
     private AdapterMedHave adapter;
+    private int increment=1,currentDrug=10000;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,24 +42,35 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_medicines_have, container, false);
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicinesHave.class);
         binding.recyclerMedicines.setHasFixedSize(true);
+        binding.recyclerMedicines.setLayoutManager(new LinearLayoutManager(requireActivity()));
         adapter = new AdapterMedHave(listMed, this);
         doInitialization();
-        loadListMedicinesHave();
         return binding.getRoot();
     }
 
     private void doInitialization() {
         binding.recyclerMedicines.setAdapter(adapter);
+        binding.recyclerMedicines.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (recyclerView.canScrollVertically(1)){
+                    if (increment <= currentDrug) {
+                        increment++;
+                        loadListMedicinesHave();
+                    }
+                }
+            }
+        });
+        loadListMedicinesHave();
     }
 
     private void loadListMedicinesHave() {
-        viewModel.getMedicinesHave(1).observe(getViewLifecycleOwner(), medicinesHaves -> {
+        int oldCount = listMed.size();
+        viewModel.getMedicinesHave(increment).observe(getViewLifecycleOwner(), medicinesHaves -> {
             if (listMed != null) {
-                binding.recyclerMedicines.setVisibility(View.VISIBLE);
-                int oldCount = listMed.size();
                 listMed.addAll(medicinesHaves);
-                adapter.notifyItemRangeInserted(oldCount, listMed.size());
-//                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
             }
         });
     }

@@ -2,30 +2,21 @@ package com.shahm.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Depot {
+public class AnalyzeDrug {
     @SerializedName("Name")
     private String name;
     @SerializedName("Store")
     private String store;
     @SerializedName("Time Statics")
     private String timeStatics;
-    @SerializedName("Available")
-    private String available;
     @SerializedName("Purchases")
     private int purchases;
     @SerializedName("Sales")
     private int sales;
     @SerializedName("Average Sale")
     private double averageSale;
-    private boolean expanded;
-
-    public boolean isExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
-    }
+    @SerializedName("Available")
+    private String available;
 
     public String getName() {
         return name;
@@ -82,4 +73,8 @@ public class Depot {
     public void setAverageSale(double averageSale) {
         this.averageSale = averageSale;
     }
+
+
+
+
 }
