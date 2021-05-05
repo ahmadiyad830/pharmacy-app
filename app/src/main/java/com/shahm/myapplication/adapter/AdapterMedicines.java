@@ -23,6 +23,7 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
     private List<Medicines> listMed;
     private List<Medicines> filterList;
     private OnMedClick itemClick;
+
     public AdapterMedicines(List<Medicines> listMed, OnMedClick onMedClick) {
         this.listMed = listMed;
         filterList = this.listMed;
@@ -101,8 +102,10 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
                 notifyItemChanged(getAdapterPosition());
             });
             binding.btnDetails.setOnClickListener(v -> {
-
-                itemClick.onItemClick(model);
+                itemClick.clickDetails(model);
+            });
+            binding.btnSale.setOnClickListener(v -> {
+                itemClick.clickSale(model);
             });
         }
     }

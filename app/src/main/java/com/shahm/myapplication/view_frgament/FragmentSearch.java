@@ -127,11 +127,17 @@ public class FragmentSearch extends Fragment implements OnMedClick {
     }
 
     @Override
-    public void onItemClick(Medicines model) {
+    public void clickDetails(Medicines model) {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
         intent.putExtra("medicines", model);
         startActivity(intent);
     }
+
+    @Override
+    public void clickSale(Medicines model) {
+
+    }
+
     public class WrapContentLinearLayoutManager extends LinearLayoutManager {
 
         public WrapContentLinearLayoutManager(Context context, int orientation, boolean reverseLayout) {

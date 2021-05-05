@@ -36,6 +36,8 @@
     <string name="scan">scan</string>
     <string name="delete">delete</string>
     <string name="update">update</string>
+    <string name="sale">sale</string>
+    <string name="analyze">analyze</string>
     <string-array name="spinner_sort_by">
         <item>طنوس</item>
         <item>الحكمة</item>

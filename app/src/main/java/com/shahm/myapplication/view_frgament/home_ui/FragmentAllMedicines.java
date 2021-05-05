@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -19,6 +18,7 @@ import com.shahm.myapplication.adapter.AdapterMedicines;
 import com.shahm.myapplication.databinding.FragmentAllMedicinesBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
+import com.shahm.myapplication.view_activity.ActivityAdd;
 import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicines;
 
@@ -47,7 +47,6 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
         doInitialization();
         getMedicines(increment);
 //        postMedicine();
-        postMedicine();
         return binding.getRoot();
     }
 
@@ -102,31 +101,20 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
         }
     }
 
-    private void postMedicine() {
-        Medicines model = new Medicines(
-                "test model",
-                "test model",
-                "test model",
-                "test model",
-                "test model",
-                "test store",
-                "1",
-                "test location",
-                "1");
-        viewModel.postData(model).observe(requireActivity(), responseMedicines -> {
-            if (responseMedicines != null) {
-                Toast.makeText(requireActivity(), responseMedicines.postData().get(0).getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
-//        viewModel.postMedicine(model).observe(this,medicines -> {
-//            Toast.makeText(requireActivity(), ""+medicines.getName(), Toast.LENGTH_SHORT).show();
-//        });
+
+
+    @Override
+    public void clickDetails(Medicines model) {
+        Intent intent = new Intent(requireActivity(), ActivityDetails.class);
+        intent.putExtra("listMed", model.listMed());
+        startActivity(intent);
     }
 
     @Override
-    public void onItemClick(Medicines model) {
-        Intent intent = new Intent(requireActivity(), ActivityDetails.class);
-        intent.putExtra("listMed", model.listMed());
+    public void clickSale(Medicines model) {
+        Intent intent = new Intent(requireActivity(), ActivityAdd.class);
+        intent.putExtra("model",model);
+        intent.putExtra("type","sale");
         startActivity(intent);
     }
 }

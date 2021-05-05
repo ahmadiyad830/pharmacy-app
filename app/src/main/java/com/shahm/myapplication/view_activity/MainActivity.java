@@ -1,11 +1,13 @@
 package com.shahm.myapplication.view_activity;
 
+import android.content.Intent;
 import android.graphics.drawable.Animatable2;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -62,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         btnStore = findViewById(R.id.floatStore);
         btnFloat.setOnClickListener(v -> {
             clickFloat();
+        });
+        btnAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this,ActivityAdd.class);
+            startActivity(intent);
+        });
+        btnStore.setOnClickListener(v -> {
+            Toast.makeText(this, "add sales", Toast.LENGTH_SHORT).show();
         });
 
         if (savedInstanceState == null) {

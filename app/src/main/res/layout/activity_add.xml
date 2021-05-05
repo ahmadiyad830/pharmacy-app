@@ -4,7 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="id"
+            type="String" />
 
+        <variable
+            name="barcode"
+            type="String" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="scientific"
+            type="String" />
+
+        <variable
+            name="concentration"
+            type="String" />
+
+        <variable
+            name="dosageform"
+            type="String" />
+
+        <variable
+            name="notes"
+            type="String" />
+
+        <variable
+            name="store"
+            type="String" />
+
+        <variable
+            name="sachet"
+            type="String" />
+
+        <variable
+            name="location"
+            type="String" />
+
+        <variable
+            name="quantity"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -15,7 +57,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@color/black"
+            android:background="?colorSecondary"
             android:layout_height="match_parent">
 
             <RelativeLayout
@@ -85,7 +127,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_barcode"
                 app:layout_constraintVertical_bias="0.0"
-                app:tint="@android:color/white"
+                app:tint="?colorPrimaryDark"
                 app:useCompatPadding="true" />
 
 
@@ -109,6 +151,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_6sdp"
                         android:hint="@string/name"
+                        android:text="@{name}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -124,6 +167,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/scientific"
+                        android:text="@{scientific}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -144,6 +188,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{concentration}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -161,6 +206,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{dosageform}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -177,6 +223,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{notes}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.2"
@@ -194,6 +241,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{store}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -211,6 +259,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{sachet}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -228,6 +277,7 @@
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
+                        android:text="@{location}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -246,6 +296,7 @@
                 android:textColor="?attr/colorOnSecondary"
                 android:textDirection="anyRtl"
                 android:textSize="@dimen/_16ssp"
+                android:text="@{barcode}"
                 app:layout_constraintBottom_toBottomOf="@+id/btn_cam_bar_code"
                 app:layout_constraintEnd_toStartOf="@+id/btn_cam_bar_code"
                 app:layout_constraintHorizontal_bias="0.09"

@@ -96,17 +96,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/name"
                     tools:layout_editor_absoluteX="19dp">
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="@{medicines.scientific}"
-                        android:textColor="@color/text_color"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/btn_details"
-                        app:layout_constraintTop_toTopOf="parent" />
+
 
                     <Button
                         android:id="@+id/btn_details"
@@ -120,6 +110,22 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/btn_sale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?actionBarSize"
+                        android:background="?colorSecondaryVariant"
+                        android:text="@string/sale"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_btn_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.875"
+                        app:layout_constraintStart_toEndOf="@+id/btn_details"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

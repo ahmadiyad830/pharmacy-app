@@ -6,7 +6,7 @@ import com.shahm.myapplication.model.MedicinesHave;
 public  class RepoListeners  {
     private static RepoListeners listeners;
     public void getMedicines (OnMedClick onMedClick, Medicines model){
-        onMedClick.onItemClick(model);
+        onMedClick.clickDetails(model);
     }
    public void getMedicinesHave(OnMedHaveClick onMedHaveClick, MedicinesHave model){
         onMedHaveClick.onMedHavClick(model);

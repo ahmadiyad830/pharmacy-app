@@ -9,8 +9,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.network.ApiClint;
 import com.shahm.myapplication.network.ApiService;
-import com.shahm.myapplication.responses.ResponseMedicines;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,21 +58,99 @@ public class RepositoreMedicines {
 //        });
         return data;
     }
-    public LiveData<ResponseMedicines> postData(Medicines model){
-        MutableLiveData<ResponseMedicines> data = new MutableLiveData<>();
-        service.postData(model).enqueue(new Callback<ResponseMedicines>() {
+
+    public LiveData<Void> postMap(HashMap<String, String> modelMap) {
+        MutableLiveData<Void> data = new MutableLiveData<>();
+        service.postMap(modelMap).enqueue(new Callback<Void>() {
             @Override
-            public void onResponse(Call<ResponseMedicines> call, Response<ResponseMedicines> response) {
-                if (!response.isSuccessful())
-                    Log.d(TAG, "onResponse: "+response.code()+"\n"+response.errorBody());
-                data.postValue(response.body());
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        Log.d(TAG, "onResponse: " + response.code() + "\nerror \t" + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<ResponseMedicines> call, Throwable t) {
+            public void onFailure(Call<Void> call, Throwable t) {
                 t.printStackTrace();
             }
         });
         return data;
     }
+
+    public LiveData<Void> postData(Medicines model) {
+        MutableLiveData<Void> data = new MutableLiveData<>();
+        service.postData(model).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        Log.d(TAG, "onResponse: " + response.code() + "\nerror \t" + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Void> postField(String name,
+                                    String scientific, String concentration, String dosageform, String notes, String store, String sachet, String slocation, String squantity) {
+        MutableLiveData<Void> data = new MutableLiveData<>();
+        service.postNewDrug(name, scientific, concentration, dosageform, notes, store, sachet, slocation, squantity).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        Log.d(TAG, "onResponse: " + response.code() + "\nerror \t" + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        return data;
+    }
+
+    public LiveData<Void> postUpdate(String id,String name,
+                                    String scientific, String concentration, String dosageform, String notes, String store, String sachet, String slocation, String squantity) {
+        MutableLiveData<Void> data = new MutableLiveData<>();
+        service.postUpdateDrug(id,name, scientific, concentration, dosageform, notes, store, sachet, slocation, squantity).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    try {
+                        Log.d(TAG, "onResponse: " + response.code() + "\nerror \t" + response.errorBody().string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+        return data;
+    }
+
 }

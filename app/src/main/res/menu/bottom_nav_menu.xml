@@ -7,10 +7,10 @@
     <item
         android:id="@+id/sales"
         android:icon="@drawable/ic_store"
-        android:title="@string/store" />
+        android:title="@string/sales" />
     <item
         android:id="@+id/analyze"
         android:icon="@drawable/ic_calendar_with_stats_infographic"
-        android:title="@string/calendar" />
+        android:title="@string/analyze" />
 
 </menu>

@@ -46,11 +46,11 @@ public class FragmentAnalyze extends Fragment {
                 binding.viewPager2, (tab, position) -> {
             switch (position) {
                 case 1:
-                    tab.setText("sales drug");
+                    tab.setText("analyze drug");
                     break;
                 case 0:
                 default:
-                    tab.setText("sales pharmacy");
+                    tab.setText("analyze pharmacy");
                     break;
 
             }

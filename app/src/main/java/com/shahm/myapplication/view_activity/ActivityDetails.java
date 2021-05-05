@@ -3,9 +3,11 @@ package com.shahm.myapplication.view_activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -13,14 +15,16 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityDetailsBinding;
+import com.shahm.myapplication.viewmodel.VMMedicines;
 
 public class ActivityDetails extends AppCompatActivity {
     private ActivityDetailsBinding binding;
-
+    private VMMedicines viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+        viewModel = new ViewModelProvider(this,new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(VMMedicines.class);
         String[] model = getIntent().getStringArrayExtra("listMed");
         if (model != null) {
             binding.setId(model[0]);
@@ -35,6 +39,13 @@ public class ActivityDetails extends AppCompatActivity {
             binding.setLocation(model[9]);
             binding.setQuantity(model[10]);
         }
+
+        binding.btnUpdate.setOnClickListener(v -> {
+            viewModel.postUpdate("7250","test update","test update","test update","test update","test update","test update","test update","test update"
+            ,"test update").observe(this,aVoid -> {
+                Toast.makeText(this, "success update", Toast.LENGTH_SHORT).show();
+            });
+        });
 
 //        if (getIntent().getSerializableExtra("medicines") instanceof Medicines){
 //            Medicines model = (Medicines) getIntent().getSerializableExtra("medicines");

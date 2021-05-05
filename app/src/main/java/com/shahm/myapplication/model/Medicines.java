@@ -1,31 +1,53 @@
 package com.shahm.myapplication.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
 public class Medicines  implements Serializable {
     @SerializedName("id")
+    @Expose
     private String id;
+
     @SerializedName("barcode")
+    @Expose
     private String barcode;
+
     @SerializedName("name")
+    @Expose
     private String name;
+
     @SerializedName("scientific")
+    @Expose
     private String scientific;
+
     @SerializedName("concentration")
+    @Expose
     private String concentration;
+
     @SerializedName("dosageform")
+    @Expose
     private String dosageform;
+
     @SerializedName("notes")
+    @Expose
     private String notes;
+
     @SerializedName("store")
+    @Expose
     private String store;
+
     @SerializedName("sachet")
+    @Expose
     private String sachet;
+
     @SerializedName("slocation")
+    @Expose
     private String location;
+
     @SerializedName("squantity")
+    @Expose
     private String quantity;
 
     private boolean expanded = false;
@@ -42,19 +64,7 @@ public class Medicines  implements Serializable {
         this.quantity = quantity;
     }
 
-    public Medicines(String barcode, String name, String scientific, String concentration, String dosageform, String notes, String store, String sachet, String location, String quantity) {
-//        super(barcode,name,scientific,concentration,dosageform,notes,store,sachet,location,quantity);
-        this.barcode = barcode;
-        this.name = name;
-        this.scientific = scientific;
-        this.concentration = concentration;
-        this.dosageform = dosageform;
-        this.notes = notes;
-        this.store = store;
-        this.sachet = sachet;
-        this.location = location;
-        this.quantity = quantity;
-    }
+
     public String[] listMed(){
         return new String[]{id,barcode,name,scientific,concentration,dosageform,notes,store,sachet,location,quantity};
     }
@@ -63,7 +73,6 @@ public class Medicines  implements Serializable {
     public String toString() {
         return "Medicines{" +
                 "id='" + id + '\'' +
-                ", barcode='" + barcode + '\'' +
                 ", name='" + name + '\'' +
                 ", scientific='" + scientific + '\'' +
                 ", concentration='" + concentration + '\'' +
@@ -73,7 +82,6 @@ public class Medicines  implements Serializable {
                 ", sachet='" + sachet + '\'' +
                 ", location='" + location + '\'' +
                 ", quantity='" + quantity + '\'' +
-                ", expanded=" + expanded +
                 '}';
     }
 
