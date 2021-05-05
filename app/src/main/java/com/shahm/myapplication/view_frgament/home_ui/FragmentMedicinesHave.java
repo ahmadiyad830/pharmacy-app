@@ -17,7 +17,7 @@ import com.shahm.myapplication.R;
 import com.shahm.myapplication.adapter.AdapterMedHave;
 import com.shahm.myapplication.databinding.FragmentMedicinesHaveBinding;
 import com.shahm.myapplication.listeners.OnMedHaveClick;
-import com.shahm.myapplication.model.MedicinesHave;
+import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicinesHave;
 
@@ -32,7 +32,7 @@ import java.util.List;
 public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     private FragmentMedicinesHaveBinding binding;
     private VMMedicinesHave viewModel;
-    private final List<MedicinesHave> listMed = new ArrayList<>();
+    private final List<Medicines> listMed = new ArrayList<>();
     private AdapterMedHave adapter;
     private int increment=1,currentDrug=10000;
 
@@ -66,21 +66,21 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
     }
 
     private void loadListMedicinesHave() {
-        int oldCount = listMed.size();
         viewModel.getMedicinesHave(increment).observe(getViewLifecycleOwner(), medicinesHaves -> {
             if (listMed != null) {
                 listMed.addAll(medicinesHaves);
                 adapter.notifyDataSetChanged();
+                binding.recyclerMedicines.smoothScrollToPosition(0);
             }
         });
     }
 
 
     @Override
-    public void onMedHavClick(MedicinesHave model) {
+    public void onMedHavClick(Medicines model) {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
 //        intent.putExtra("medicines", model);
-        intent.putExtra("listMed",model.listMedHave());
+        intent.putExtra("listMed",model);
         startActivity(intent);
     }
 }

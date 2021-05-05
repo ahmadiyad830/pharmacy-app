@@ -11,16 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ItemMedHaveBinding;
 import com.shahm.myapplication.listeners.OnMedHaveClick;
-import com.shahm.myapplication.model.MedicinesHave;
+import com.shahm.myapplication.model.Medicines;
+
 
 import java.util.List;
 //https://www.blacktools.io/sapi/?mydrug=1
 public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHolder> {
     private LayoutInflater inflater;
-    private List<MedicinesHave> listMed;
+    private List<Medicines> listMed;
     private OnMedHaveClick onMedHaveClick;
 
-    public AdapterMedHave(List<MedicinesHave> listMed, OnMedHaveClick onMedHaveClick) {
+    public AdapterMedHave(List<Medicines> listMed, OnMedHaveClick onMedHaveClick) {
         this.listMed = listMed;
         this.onMedHaveClick = onMedHaveClick;
     }
@@ -54,7 +55,7 @@ public class AdapterMedHave extends RecyclerView.Adapter<AdapterMedHave.ViewHold
             super(binding.getRoot());
             this.binding = binding;
         }
-        private void bind(MedicinesHave model){
+        private void bind(Medicines model){
             binding.setMedicines(model);
             binding.setPosition(String.valueOf(getAdapterPosition()));
             binding.container.setOnClickListener(v -> {

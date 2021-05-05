@@ -58,7 +58,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawer.addDrawerListener(toggle);
         toggle.setDrawerIndicatorEnabled(true);
         toggle.syncState();
-        binding.navigationView.setNavigationItemSelectedListener(this);
+        try {
+            binding.navigationView.setNavigationItemSelectedListener(this);
+        } catch (Exception e) {
+            finish();
+            e.printStackTrace();
+        }
+
         btnFloat = findViewById(R.id.floatArrow);
         btnAdd = findViewById(R.id.floatAdd);
         btnStore = findViewById(R.id.floatStore);

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data
+        android:id="@+id/data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+       <variable
+           name="model"
+           type="com.shahm.myapplication.model.Medicines" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view_activity.ActivityEdit">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text='@{model.id}'
+                android:textColor="?colorAccent"
+                android:textSize="@dimen/_14ssp" />
+
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:src="@drawable/ic_back"
+                app:tint="?colorPrimaryDark" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+
+                <EditText
+                    android:id="@+id/edtConcentration"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/concentration"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text='@{model.concentration}'
+                    android:textColor="?colorAccent"
+                    app:layout_constraintEnd_toEndOf="@+id/edtScientific"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtScientific"
+                    app:layout_constraintTop_toBottomOf="@+id/edtScientific" />
+
+
+                <EditText
+                    android:id="@+id/edtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:hint="@string/name"
+                    android:lines="1"
+                    android:textColor="?colorAccent"
+                    android:maxLines="1"
+                    android:text='@{model.name}'
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.516"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+                <EditText
+                    android:id="@+id/edtScientific"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:hint="@string/scientific"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text='@{model.scientific}'
+                    android:textColor="?colorAccent"
+
+                    app:layout_constraintEnd_toEndOf="@+id/edtBarcode"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtBarcode"
+                    app:layout_constraintTop_toBottomOf="@+id/edtBarcode" />
+
+                <EditText
+                    android:id="@+id/edtDosageform"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/dosageform"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text='@{model.dosageform}'
+                    android:textColor="?colorAccent"
+                    app:layout_constraintEnd_toEndOf="@+id/edtConcentration"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtConcentration"
+                    app:layout_constraintTop_toBottomOf="@+id/edtConcentration" />
+
+                <EditText
+                    android:id="@+id/edtStore"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/store"
+                    android:lines="1"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:text="@{model.store}"
+                    android:textColor="?colorAccent" />
+                <EditText
+                    android:id="@+id/edtNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:hint="@string/notes"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:text="@{model.notes}"
+                    android:textColor="?colorAccent"/>
+
+                <EditText
+                    android:id="@+id/edtSachet"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/sachet"
+                    android:lines="1"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:maxLines="1"
+                    android:text='@{model.sachet}'
+                    android:textColor="?colorAccent"
+                    app:layout_constraintEnd_toEndOf="@+id/edtLocation"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtLocation"
+                    app:layout_constraintTop_toBottomOf="@+id/edtLocation" />
+
+                <EditText
+                    android:id="@+id/edtLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/location"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@{model.location}"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:textColor="?colorAccent"
+                    app:layout_constraintEnd_toEndOf="@+id/edtQuantity"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtQuantity"
+                    app:layout_constraintTop_toBottomOf="@+id/edtQuantity" />
+
+                <EditText
+                    android:id="@+id/edtQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:background="@drawable/custom_stork"
+                    android:hint="@string/quantity"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="@{model.quantity}"
+                    android:textColor="?colorAccent"
+                    android:paddingLeft="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/edtStore"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/edtStore"
+                    app:layout_constraintTop_toBottomOf="@+id/edtStore" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginBottom="?actionBarSize"
+            android:background="?colorPrimaryDark"
+            android:text="@string/update"
+            android:textColor="?colorOnPrimary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

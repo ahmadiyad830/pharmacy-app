@@ -1,7 +1,7 @@
 package com.shahm.myapplication.listeners;
 
-import com.shahm.myapplication.model.MedicinesHave;
+import com.shahm.myapplication.model.Medicines;
 
 public interface OnMedHaveClick {
-    void onMedHavClick(MedicinesHave model);
+    void onMedHavClick(Medicines model);
 }

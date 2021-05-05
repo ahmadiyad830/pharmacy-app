@@ -19,16 +19,12 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityAddBinding;
-import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.viewmodel.VMMedicines;
-
-import java.util.HashMap;
 
 
 public class ActivityAdd extends AppCompatActivity {
 
     private ActivityAddBinding binding;
-    private Medicines model;
     private VMMedicines viewModel;
 
     @Override
@@ -44,37 +40,13 @@ public class ActivityAdd extends AppCompatActivity {
         binding.btnBack.setOnClickListener(v -> {
             onBackPressed();
         });
-        String type = getIntent().getStringExtra("type");
         binding.btnAdd.setOnClickListener(v -> {
-
-            HashMap<String,String> map = new HashMap<>();
-            map.put("name","adsfasdfasdf");
-            map.put("scientific","ASdfasdfa");
-            map.put("concentration","ASdfasdfasdfasdfasdf");
-            map.put("dosageform","Asdfasdfasdf");
-            map.put("notes","Asdfasdfasdf");
-            map.put("store","Asdfasdfasdf");
-            map.put("sachet","Asdfasdfasdf");
-            map.put("slocation","Asdfasdfasdf");
-            map.put("squantity","asdf");
 //            viewModel.postMap(map).observe(this, aVoid -> {
 //                Toast.makeText(this, "success upload data", Toast.LENGTH_SHORT).show();
 //            });
 
             uploadData();
         });
-
-        switch (type) {
-            case "sale":
-                model = (Medicines) getIntent().getSerializableExtra("model");
-                if (model != null) {
-                    setValue();
-                }
-                break;
-            case "add":
-                Toast.makeText(this, "add custom sale", Toast.LENGTH_SHORT).show();
-                break;
-        }
     }
 
     private void uploadData() {
@@ -83,19 +55,6 @@ public class ActivityAdd extends AppCompatActivity {
 //            Toast.makeText(this, "success upload data", Toast.LENGTH_SHORT).show();
 //        });
 
-    }
-
-
-    private void setValue() {
-        binding.setBarcode(model.getBarcode());
-        binding.setName(model.getName());
-        binding.setConcentration(model.getConcentration());
-        binding.setScientific(model.getScientific());
-        binding.setDosageform(model.getDosageform());
-        binding.setNotes(model.getNotes());
-        binding.setLocation(model.getLocation());
-        binding.setStore(model.getStore());
-        binding.setSachet(model.getSachet());
     }
 
 

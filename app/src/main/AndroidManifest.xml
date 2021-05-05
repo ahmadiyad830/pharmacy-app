@@ -20,9 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view_activity.ActivityAdd"/>
-        <activity android:name=".view_activity.ActivityDetails"/>
-        <activity android:name=".view_activity.MainActivity" android:windowSoftInputMode="adjustPan">
+        <activity android:name=".view_activity.ActivityEdit"></activity>
+        <activity android:name=".view_activity.ActivityAdd" />
+        <activity android:name=".view_activity.ActivityDetails" />
+        <activity
+            android:name=".view_activity.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

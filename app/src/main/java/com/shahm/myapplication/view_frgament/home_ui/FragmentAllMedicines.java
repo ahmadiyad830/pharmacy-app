@@ -23,7 +23,6 @@ import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicines;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -107,7 +106,7 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     @Override
     public void clickDetails(Medicines model) {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
-        intent.putExtra("listMed", model.listMed());
+        intent.putExtra("model", model);
         startActivity(intent);
     }
 

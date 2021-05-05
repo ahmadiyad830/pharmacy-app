@@ -6,7 +6,7 @@
     <data>
         <variable
             name="medicines"
-            type="com.shahm.myapplication.model.MedicinesHave" />
+            type="com.shahm.myapplication.model.Medicines" />
         <variable
             name="position"
             type="String" />

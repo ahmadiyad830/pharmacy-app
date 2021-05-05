@@ -3,7 +3,6 @@ package com.shahm.myapplication.network;
 import com.shahm.myapplication.model.AnalyzeDepot;
 import com.shahm.myapplication.model.AnalyzeDrug;
 import com.shahm.myapplication.model.Medicines;
-import com.shahm.myapplication.model.MedicinesHave;
 import com.shahm.myapplication.model.SalesPharmacy;
 
 import java.util.HashMap;
@@ -27,7 +26,7 @@ public interface ApiService {
 
     //drug i have FragmentMedicinesHave
     @GET("?mydrug=mydrug")
-    Call<List<MedicinesHave>> getMedicinesHave(@Query("mydrug") int page);
+    Call<List<Medicines>> getMedicinesHave(@Query("mydrug") int page);
 
     // sales in FragmentSales
     @GET("?sales=sales")
@@ -88,7 +87,7 @@ public interface ApiService {
                            @Query("slocation") String slocation,
                            @Query("squantity") String squantity);
 
-    @PUT("?editdrug/&itemid=itemid&name=name&scientific=scientific&concentration=concentration&dosageform=dosageform&notes=notes&store=store&sachet=sachet&slocation=slocation&squantity=squantity")
+    @PUT("?editdrug&itemid=itemid&name=name&scientific=scientific&concentration=concentration&dosageform=dosageform&notes=notes&store=store&sachet=sachet&slocation=slocation&squantity=squantity")
     Call<Void> postUpdateDrug(@Query("itemid") String id,
                               @Query("name") String name,
                               @Query("scientific") String scientific,
