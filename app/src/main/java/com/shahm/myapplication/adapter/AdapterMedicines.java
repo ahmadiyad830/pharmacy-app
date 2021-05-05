@@ -16,6 +16,7 @@ import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 //https://www.blacktools.io/sapi/?alldrug=1
 public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.ViewHolder> implements Filterable {
@@ -27,11 +28,14 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
     public AdapterMedicines(List<Medicines> listMed, OnMedClick onMedClick) {
         this.listMed = listMed;
         filterList = this.listMed;
+        Collections.reverse(listMed);
         itemClick = onMedClick;
     }
 
     public void setListMed(List<Medicines> listMed) {
         this.listMed = listMed;
+        Collections.reverse(listMed);
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

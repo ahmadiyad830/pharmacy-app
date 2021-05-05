@@ -23,6 +23,7 @@ import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicines;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**

@@ -207,7 +207,7 @@
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
 
-                    <TextView
+                    <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_16sdp"
@@ -240,11 +240,28 @@
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtSachet"
+                        android:layout_width="@dimen/_50sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_16sdp"
-                        android:text='@{"sachet: "+sachet}'
+                        android:focusable="true"
+                        android:lines="1"
+                        android:text=""
+                        android:maxLines="1"
+                        android:hint="@string/sachet"
+                        android:textColor="?colorAccent"
+                        android:textSize="@dimen/_14ssp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtPrice"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_16sdp"
+                        android:hint="@string/price"
+                        android:focusable="true"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:text=""
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
 
@@ -268,20 +285,20 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
 
-            <Button
-                android:id="@+id/btnDelete"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSale"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_weight="3"
-                android:background="@android:color/holo_red_light"
-                android:text="@string/delete" />
+                android:layout_weight="1"
+                android:background="@drawable/custom_stork"
+                android:text="@string/sale" />
 
             <Button
                 android:id="@+id/btnUpdate"
                 android:layout_width="0dp"
                 android:layout_height="?actionBarSize"
-                android:layout_weight="7"
+                android:layout_weight="1"
                 android:text="@string/update" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

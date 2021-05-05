@@ -46,15 +46,7 @@ public class ActivityAdd extends AppCompatActivity {
         });
         String type = getIntent().getStringExtra("type");
         binding.btnAdd.setOnClickListener(v -> {
-            String barcode = binding.getBarcode();
-            String name = binding.getName();
-            String concentration = binding.getConcentration();
-            String scientific = binding.getScientific();
-            String dosageform = binding.getDosageform();
-            String notes = binding.getNotes();
-            String location = binding.getLocation();
-            String store = binding.getStore();
-            String sachet = binding.getSachet();
+
             HashMap<String,String> map = new HashMap<>();
             map.put("name","adsfasdfasdf");
             map.put("scientific","ASdfasdfa");
@@ -68,10 +60,7 @@ public class ActivityAdd extends AppCompatActivity {
 //            viewModel.postMap(map).observe(this, aVoid -> {
 //                Toast.makeText(this, "success upload data", Toast.LENGTH_SHORT).show();
 //            });
-            viewModel.postField(name,scientific,concentration,dosageform,notes,store,sachet,location,"5")
-                    .observe(this,aVoid -> {
-                        Toast.makeText(this, "success upload data", Toast.LENGTH_SHORT).show();
-                    });
+
             uploadData();
         });
 
