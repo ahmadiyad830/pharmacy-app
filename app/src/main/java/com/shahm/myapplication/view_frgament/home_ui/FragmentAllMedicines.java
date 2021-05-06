@@ -62,10 +62,10 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (recyclerView.canScrollVertically(1)) {
-                    if (increment <= currentDrug) {
+
                         increment++;
                         getMedicines(increment);
-                    }
+
 
                 }
                 if (recyclerView.canScrollVertically(-1)) {

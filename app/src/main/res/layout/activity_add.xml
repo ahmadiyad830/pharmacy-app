@@ -4,49 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="id"
-            type="String" />
 
-        <variable
-            name="barcode"
-            type="String" />
-
-        <variable
-            name="name"
-            type="String" />
-
-        <variable
-            name="scientific"
-            type="String" />
-
-        <variable
-            name="concentration"
-            type="String" />
-
-        <variable
-            name="dosageform"
-            type="String" />
-
-        <variable
-            name="notes"
-            type="String" />
-
-        <variable
-            name="store"
-            type="String" />
-
-        <variable
-            name="sachet"
-            type="String" />
-
-        <variable
-            name="location"
-            type="String" />
-
-        <variable
-            name="quantity"
-            type="String" />
     </data>
 
     <LinearLayout
@@ -96,49 +54,16 @@
 
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/img_barcode"
-                android:layout_width="@dimen/_300sdp"
-                android:layout_height="@dimen/_200sdp"
-                android:src="@drawable/barcodetext"
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/btn_cam_bar_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:clickable="true"
-                android:contentDescription="@string/app_name"
-                android:elevation="6dp"
-                android:focusable="true"
-                android:padding="@dimen/_8sdp"
-                android:src="@drawable/ic_barcode"
-                app:elevation="6dp"
-                app:fabSize="auto"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_barcode"
-                app:layout_constraintVertical_bias="0.0"
-                app:tint="?colorPrimaryDark"
-                app:useCompatPadding="true" />
-
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_cam_bar_code">
+                app:layout_constraintVertical_bias="0.19999999">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -151,7 +76,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_6sdp"
                         android:hint="@string/name"
-                        android:text="@{name}"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -167,7 +92,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/scientific"
-                        android:text="@{scientific}"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -185,10 +110,10 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/concentration"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{concentration}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -203,10 +128,10 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/dosageform"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{dosageform}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -220,10 +145,10 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/notes"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{notes}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.2"
@@ -238,10 +163,10 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/store"
+                        android:text=""
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{store}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -256,10 +181,10 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/sachet"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{sachet}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -274,34 +199,34 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/location"
+
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
-                        android:text="@{location}"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sachet" />
 
+                    <EditText
+                        android:id="@+id/quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_8sdp"
+                        android:layout_marginVertical="@dimen/_8sdp"
+                        android:hint="@string/quantity"
+
+                        android:textColor="?attr/colorOnSecondary"
+                        android:textDirection="anyRtl"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintEnd_toEndOf="@+id/location"
+                        app:layout_constraintStart_toStartOf="@+id/location"
+                        app:layout_constraintTop_toBottomOf="@+id/location" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
 
-            <EditText
-                android:id="@+id/edt_bar_code"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:hint="@string/bar_code"
-                android:textColor="?attr/colorOnSecondary"
-                android:textDirection="anyRtl"
-                android:textSize="@dimen/_16ssp"
-                android:text="@{barcode}"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_cam_bar_code"
-                app:layout_constraintEnd_toStartOf="@+id/btn_cam_bar_code"
-                app:layout_constraintHorizontal_bias="0.09"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_barcode" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,17 +10,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityEditBinding;
 import com.shahm.myapplication.model.Medicines;
-import com.shahm.myapplication.viewmodel.VMMedicines;
+import com.shahm.myapplication.viewmodel.VMUpdate;
 
 public class ActivityEdit extends AppCompatActivity {
     private ActivityEditBinding binding;
     private Medicines model;
-    private VMMedicines viewModel;
+    private VMUpdate viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit);
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(VMMedicines.class);
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(VMUpdate.class);
         if (getIntent() != null) {
             model = (Medicines) getIntent().getSerializableExtra("model");
             if (model!=null)

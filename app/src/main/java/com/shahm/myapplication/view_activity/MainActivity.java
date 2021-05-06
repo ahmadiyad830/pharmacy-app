@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             clickFloat();
         });
         btnAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this,ActivityAdd.class);
+            Intent intent = new Intent(MainActivity.this, ActivityAdd.class);
             startActivity(intent);
         });
         btnStore.setOnClickListener(v -> {

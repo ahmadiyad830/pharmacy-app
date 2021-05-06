@@ -31,7 +31,7 @@ public class FragmentHome extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
 
@@ -74,7 +74,7 @@ public class FragmentHome extends Fragment {
         loadTabLayout();
     }
     private void loadTabLayout() {
-        viewPager2Adapter = new ViewPager2Adapter(getActivity());
+        viewPager2Adapter = new ViewPager2Adapter(requireActivity());
         viewPager2Adapter.addFragment(new FragmentAllMedicines());
         viewPager2Adapter.addFragment(new FragmentMedicinesHave());
         binding.viewPager2.setAdapter(viewPager2Adapter);

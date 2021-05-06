@@ -14,7 +14,13 @@ public class VMPHSales extends ViewModel {
     public VMPHSales() {
         sales = new RepoPHSales();
     }
-    public LiveData<List<SalesPharmacy>> getSales(int page){
+
+    public LiveData<List<SalesPharmacy>> getSales(int page) {
         return sales.getSales(page);
     }
+
+    public LiveData<Void> postDelete(String salesId) {
+        return sales.postSales(salesId);
+    }
+
 }

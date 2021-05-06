@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    dark-->
+    <!--    dark-->
 
-<!--    light-->
+
     <color name="main_color">#FFFFFF</color>
     <color name="top_and_bottom_color">#FBFBFB</color>
     <color name="text_color">#000000</color>
     <color name="text_btn_color">#FFFFFF</color>
     <color name="icon_color">#000000</color>
     <color name="selector_color">#000000</color>
-
+    <!--native color-->
     <color name="overlayBackground">#7f333639</color>
 
-
+    <!--    light-->
+    <color name="main_color_d">#16191C</color>
+    <color name="btn_color_d">#EB000000</color>
+    <color name="btn_txt_color_d">#FFFFFF</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#E2DEE8</color>

@@ -5,12 +5,6 @@
     <item android:icon="@drawable/ic_search"
         android:id="@+id/item_search"
         android:title="@string/search"
-        app:showAsAction="always"
-        tools:ignore="AlwaysShowAction" />
-    <item android:icon="@drawable/ic_barcode"
-        android:id="@+id/scan_cam"
-        android:visible="true"
-        android:title="@string/search"
         app:showAsAction="always"/>
 
 </menu>

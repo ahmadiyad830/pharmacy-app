@@ -1,6 +1,5 @@
 package com.shahm.myapplication.view_frgament.home_ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shahm.myapplication.R;
-import com.shahm.myapplication.adapter.AdapterMedHave;
+import com.shahm.myapplication.adapter.AdapterMedicines;
 import com.shahm.myapplication.databinding.FragmentMedicinesHaveBinding;
-import com.shahm.myapplication.listeners.OnMedHaveClick;
+import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
-import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicinesHave;
 
 import java.util.ArrayList;
@@ -29,11 +27,11 @@ import java.util.List;
  * Use the {@link FragmentMedicinesHave#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
+public class FragmentMedicinesHave extends Fragment implements OnMedClick {
     private FragmentMedicinesHaveBinding binding;
     private VMMedicinesHave viewModel;
     private final List<Medicines> listMed = new ArrayList<>();
-    private AdapterMedHave adapter;
+    private AdapterMedicines adapterV2;
     private int increment=1,currentDrug=10000;
 
     @Override
@@ -43,13 +41,13 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(requireActivity().getApplication())).get(VMMedicinesHave.class);
         binding.recyclerMedicines.setHasFixedSize(true);
         binding.recyclerMedicines.setLayoutManager(new LinearLayoutManager(requireActivity()));
-        adapter = new AdapterMedHave(listMed, this);
+        adapterV2 = new AdapterMedicines(listMed, this);
         doInitialization();
         return binding.getRoot();
     }
 
     private void doInitialization() {
-        binding.recyclerMedicines.setAdapter(adapter);
+        binding.recyclerMedicines.setAdapter(adapterV2);
         binding.recyclerMedicines.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -67,20 +65,23 @@ public class FragmentMedicinesHave extends Fragment implements OnMedHaveClick {
 
     private void loadListMedicinesHave() {
         viewModel.getMedicinesHave(increment).observe(getViewLifecycleOwner(), medicinesHaves -> {
-            if (listMed != null) {
+            if (medicinesHaves != null) {
+                int oldCount = listMed.size();
                 listMed.addAll(medicinesHaves);
-                adapter.notifyDataSetChanged();
-                binding.recyclerMedicines.smoothScrollToPosition(0);
+                adapterV2.notifyItemRangeInserted(oldCount, listMed.size());
+
             }
         });
+
     }
 
+    @Override
+    public void clickDetails(Medicines model) {
+
+    }
 
     @Override
-    public void onMedHavClick(Medicines model) {
-        Intent intent = new Intent(requireActivity(), ActivityDetails.class);
-//        intent.putExtra("medicines", model);
-        intent.putExtra("listMed",model);
-        startActivity(intent);
+    public void clickSale(Medicines model) {
+
     }
 }

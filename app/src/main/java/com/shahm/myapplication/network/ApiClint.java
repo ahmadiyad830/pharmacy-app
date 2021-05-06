@@ -1,27 +1,30 @@
 package com.shahm.myapplication.network;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClint {
     private static Retrofit retrofit;
     private static final String linkApi = "https://www.blacktools.io/sapi/";
-    private static OkHttpClient okHttpClient;
+
 
     public static Retrofit getRetrofit() {
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-        OkHttpClient okHttpClient = new OkHttpClient();
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .addNetworkInterceptor(chain -> {
+//                    Request.Builder builder = chain.request().newBuilder();
+//                    builder.addHeader("Accept-Language", Locale.getDefault().getDisplayLanguage());
+//                    Request request = builder.build();
+//                    return chain.proceed(request);
+//                }).build();
+//        Gson gson = new GsonBuilder()
+//                .setLenient()
+//                .create();
+
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(linkApi)
-                    .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create(gson))
+//                    .client(okHttpClient)
+//                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
         }
         return retrofit;

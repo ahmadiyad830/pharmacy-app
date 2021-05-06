@@ -10,6 +10,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -99,13 +100,16 @@ public interface ApiService {
                               @Query("slocation") String slocation,
                               @Query("squantity") String squantity);
 
+    // in details
     @PUT("?selldrug&itemid=itemid&price=price&issachet=issachet")
     Call<Void> saleDrug(@Query("itemid") String sachet, @Query("price") String slocation, @Query("issachet") String squantity);
 
+    // in salary details
     @PUT("?addpruch&itemid=itemid&number=number")
-    Call<Void> postAddSales(@Query("itemid") String sachet, @Query("number") String slocation);
+    Call<Void> postAddSales(@Query("itemid") String itemId, @Query("number") String number);
 
-    @PUT("?deletesales&salesid=salesid")
+    //in sales pharmacy
+    @DELETE("?deletesales&salesid=salesid")
     Call<Void> postDeleteSales(@Query("salesid") String salesId);
 
 

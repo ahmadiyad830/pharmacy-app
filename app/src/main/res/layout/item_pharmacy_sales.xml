@@ -17,7 +17,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?colorSecondary"
+            android:background="@color/main_color"
+            android:orientation="horizontal"
             app:cardCornerRadius="@dimen/_6sdp"
             app:cardElevation="@dimen/_3sdp"
             app:cardUseCompatPadding="true"
@@ -28,93 +29,71 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:padding="@dimen/_14sdp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="29dp"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:maxEms="15"
+                    android:maxLines="1"
+                    android:text="@{model.name}"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@{model.date}"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintBottom_toTopOf="@+id/constrain_expanded"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constrain_expanded"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:text="@{model.id}"
-                        android:textColor="#000000"
-                        android:textDirection="anyRtl" />
-
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:text='@{"name: "+model.name}'
-                        android:textColor="#000000"
-                        android:textDirection="anyRtl" />
-
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_18sdp"
-                        android:text='@{"Sachet"+model.isSachet}'
-                        android:textColor="#000000"
-                        android:textDirection="anyRtl" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="24dp"
-                        android:text='@{"concentraion: "+model.concentraion}'
-                        android:textAlignment="textEnd"
-                        android:textColor="#000000"
-                        android:textDirection="anyRtl" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="24dp"
-                        android:text='@{"dosage Form: "+model.dosageForm}'
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="24dp"
-                        android:text='@{"store"+model.store}'
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="24dp"
-                        android:text='@{"price"+model.price}'
-                        android:textColor="#000000" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/_8sdp"
-                        android:layout_marginTop="24dp"
-                        android:text='@{"date: "+model.date}'
-                        android:textColor="#000000"
-                        android:textDirection="anyRtl" />
-
-                </LinearLayout>
+                    android:layout_marginVertical="@dimen/_12sdp"
+                    android:textColor="@color/main_color"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/name"
+                    tools:layout_editor_absoluteX="19dp">
 
 
+
+                    <Button
+                        android:id="@+id/btn_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="?actionBarSize"
+                        android:background="?colorSecondaryVariant"
+                        android:text="@string/details"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_btn_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

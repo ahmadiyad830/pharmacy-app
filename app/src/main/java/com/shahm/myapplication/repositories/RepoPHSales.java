@@ -35,4 +35,24 @@ public class RepoPHSales {
         });
         return data;
     }
+
+    public LiveData<Void> postDelete(String salesId) {
+        MutableLiveData<Void> data = new MutableLiveData<>();
+        service.postDeleteSales(salesId).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                try {
+                    data.setValue(response.body());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+        return data;
+    }
 }
