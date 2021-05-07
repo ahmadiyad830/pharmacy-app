@@ -14,23 +14,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RepoUpdate {
+public class RepoSaleDrug {
     private ApiService service;
-    private static final String TAG = "RepoUpdate";
-    public RepoUpdate() {
+    private String TAG = "RepoSaleDrug";
+
+    public RepoSaleDrug() {
         service = ApiClint.getRetrofit().create(ApiService.class);
     }
-    public LiveData<Void> postUpdate(String id, String name,
-                                     String scientific
-            , String concentration, String dosageform, String notes, String store, String sachet, String slocation, String squantity) {
+    public LiveData<Void> postSale(String itemId,String isSachet,String price){
         MutableLiveData<Void> data = new MutableLiveData<>();
-        service.postUpdateDrug(id, name, scientific, concentration, dosageform, notes, store, sachet, slocation, squantity).enqueue(new Callback<Void>() {
+        service.postSaleDrug(itemId,price,isSachet).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: " + response.code());
-                }
-                data.setValue(response.body());
+                if (!response.isSuccessful()){
+                    try {
+                        Log.d(TAG, "onResponse: "+response.errorBody().string()+"\n"+response.code());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else data.setValue(response.body());
             }
 
             @Override

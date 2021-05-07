@@ -24,27 +24,114 @@
         tools:context=".view_activity.MainActivity"
         tools:openDrawer="start">
 
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="?actionBarSize">
 
-            <include
-                android:id="@+id/app_bar_layout"
-                layout="@layout/app_bar_main" />
+            <RelativeLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintHorizontal_bias="0.5"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toTopOf="parent">
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/img_menu"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:src="@drawable/ic_menu"
+                    app:tint="?colorPrimaryDark" />
 
+                <ImageView
+                    android:id="@+id/ic_search"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:src="@drawable/ic_barcode" />
+            </RelativeLayout>
+
+            <fragment
+                android:id="@+id/nav_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                ads:layout_constraintBottom_toBottomOf="parent"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintHorizontal_bias="0.5"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_main_bottom" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:elevation="6dp"
+                android:focusable="true"
+                android:src="@drawable/ic_add"
+                android:visibility="invisible"
+                app:elevation="6dp"
+                app:fabSize="auto"
+                app:layout_constraintBottom_toTopOf="@+id/floatStore"
+                app:layout_constraintEnd_toEndOf="@+id/floatStore"
+                app:layout_constraintStart_toStartOf="@+id/floatStore"
+                app:pressedTranslationZ="12dp"
+                app:tint="?colorSecondaryVariant" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatStore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:elevation="6dp"
+                android:focusable="true"
+                android:src="@drawable/ic_store"
+                android:visibility="invisible"
+                app:elevation="6dp"
+                app:fabSize="auto"
+                app:layout_constraintBottom_toTopOf="@+id/floatArrow"
+                app:layout_constraintEnd_toEndOf="@+id/floatArrow"
+                app:layout_constraintStart_toStartOf="@+id/floatArrow"
+                app:pressedTranslationZ="12dp"
+                app:tint="?colorSecondaryVariant" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:clickable="true"
+                android:contentDescription="@string/app_name"
+                android:elevation="6dp"
+                android:focusable="true"
+                android:src="@drawable/ic_top_arrow"
+                app:elevation="6dp"
+                app:fabSize="auto"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                app:layout_constraintVertical_bias="0.973"
+                app:pressedTranslationZ="12dp"
+                app:tint="?colorSecondaryVariant"
+                app:useCompatPadding="true" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/overlayBackground"

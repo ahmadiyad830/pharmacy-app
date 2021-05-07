@@ -20,7 +20,7 @@ public class VMPHSales extends ViewModel {
     }
 
     public LiveData<Void> postDelete(String salesId) {
-        return sales.postSales(salesId);
+        return sales.postDelete(salesId);
     }
 
 }

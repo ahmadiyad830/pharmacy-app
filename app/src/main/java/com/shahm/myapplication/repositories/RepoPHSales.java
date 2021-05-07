@@ -1,5 +1,7 @@
 package com.shahm.myapplication.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -7,6 +9,7 @@ import com.shahm.myapplication.model.SalesPharmacy;
 import com.shahm.myapplication.network.ApiClint;
 import com.shahm.myapplication.network.ApiService;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,6 +18,7 @@ import retrofit2.Response;
 
 public class RepoPHSales {
     private ApiService service;
+    private String TAG = "RepoPHSales";
 
     public RepoPHSales() {
         service = ApiClint.getRetrofit().create(ApiService.class);
@@ -46,11 +50,12 @@ public class RepoPHSales {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Log.d(TAG, "onResponse: " + response.code());
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
         return data;

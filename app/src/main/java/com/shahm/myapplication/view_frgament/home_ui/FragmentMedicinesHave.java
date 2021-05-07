@@ -1,5 +1,6 @@
 package com.shahm.myapplication.view_frgament.home_ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.shahm.myapplication.adapter.AdapterMedicines;
 import com.shahm.myapplication.databinding.FragmentMedicinesHaveBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
+import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicinesHave;
 
 import java.util.ArrayList;
@@ -58,14 +60,23 @@ public class FragmentMedicinesHave extends Fragment implements OnMedClick {
                         loadListMedicinesHave();
                     }
                 }
+                if (recyclerView.canScrollVertically(-1)) {
+                    binding.fabScrollRecycler.setVisibility(View.VISIBLE);
+                    binding.fabScrollRecycler.setOnClickListener(v -> recyclerView.scrollToPosition(0));
+                } else {
+                    binding.fabScrollRecycler.setVisibility(View.GONE);
+                }
             }
         });
         loadListMedicinesHave();
     }
 
     private void loadListMedicinesHave() {
+        toggleLoading();
         viewModel.getMedicinesHave(increment).observe(getViewLifecycleOwner(), medicinesHaves -> {
             if (medicinesHaves != null) {
+                toggleLoading();
+                binding.recyclerMedicines.setVisibility(View.VISIBLE);
                 int oldCount = listMed.size();
                 listMed.addAll(medicinesHaves);
                 adapterV2.notifyItemRangeInserted(oldCount, listMed.size());
@@ -74,14 +85,20 @@ public class FragmentMedicinesHave extends Fragment implements OnMedClick {
         });
 
     }
+    private void toggleLoading() {
+        if (increment == 1) {
+            binding.setIsLoading(binding.getIsLoading() == null || !binding.getIsLoading());
+        } else {
+            binding.setIsLoadingMore(binding.getIsLoadingMore() == null || !binding.getIsLoadingMore());
+        }
+    }
 
     @Override
     public void clickDetails(Medicines model) {
-
+        Intent intent = new Intent(requireActivity(), ActivityDetails.class);
+        intent.putExtra("model",model);
+        startActivity(intent);
     }
 
-    @Override
-    public void clickSale(Medicines model) {
 
-    }
 }

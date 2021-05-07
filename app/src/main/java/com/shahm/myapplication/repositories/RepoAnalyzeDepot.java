@@ -45,7 +45,7 @@ public class RepoAnalyzeDepot {
 
             @Override
             public void onFailure(Call<List<AnalyzeDepot>> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
         return data;

@@ -1,8 +1,11 @@
 package com.shahm.myapplication.model;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 //
-public class SalesPharmacy {
+public class SalesPharmacy implements Serializable {
     @SerializedName("Drug ID")
     private String id;
     @SerializedName("Name")
@@ -20,11 +23,30 @@ public class SalesPharmacy {
     @SerializedName("date")
     private String date;
 
-    @Override
-    public String toString() {
-        return "SalesMed{" +"name='" + name + '\'' + '}';
+    private boolean expanded;
+
+    public boolean isExpanded() {
+        return expanded;
     }
 
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    @Override
+    public String toString() {
+        return "SalesPharmacy{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", isSachet='" + isSachet + '\'' +
+                ", concentraion='" + concentraion + '\'' +
+                ", DosageForm='" + DosageForm + '\'' +
+                ", Store='" + Store + '\'' +
+                ", price='" + price + '\'' +
+                ", date='" + date + '\'' +
+                ", expanded=" + expanded +
+                '}';
+    }
 
     public String getId() {
         return id;

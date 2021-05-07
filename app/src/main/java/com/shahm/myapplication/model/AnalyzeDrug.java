@@ -7,16 +7,17 @@ public class AnalyzeDrug {
     private String name;
     @SerializedName("Store")
     private String store;
-    @SerializedName("Time Statics")
+    @SerializedName("TimeStatics")
     private String timeStatics;
     @SerializedName("Purchases")
     private int purchases;
     @SerializedName("Sales")
-    private int sales;
-    @SerializedName("Average Sale")
+    private double sales;
+    @SerializedName("AverageSale")
     private double averageSale;
     @SerializedName("Available")
     private String available;
+
 
     public String getName() {
         return name;
@@ -42,14 +43,6 @@ public class AnalyzeDrug {
         this.timeStatics = timeStatics;
     }
 
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
-    }
-
     public int getPurchases() {
         return purchases;
     }
@@ -58,11 +51,11 @@ public class AnalyzeDrug {
         this.purchases = purchases;
     }
 
-    public int getSales() {
+    public double getSales() {
         return sales;
     }
 
-    public void setSales(int sales) {
+    public void setSales(double sales) {
         this.sales = sales;
     }
 
@@ -74,7 +67,11 @@ public class AnalyzeDrug {
         this.averageSale = averageSale;
     }
 
+    public String getAvailable() {
+        return available;
+    }
 
-
-
+    public void setAvailable(String available) {
+        this.available = available;
+    }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main_bottom"
-    app:startDestination="@id/sales">
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_fragmentStore_to_fragmentSetting"
             app:destination="@id/fragmentSetting" />
+        <action
+            android:id="@+id/action_sales_to_fragmentDetails"
+            app:destination="@id/fragmentDetails" />
     </fragment>
     <fragment
         android:id="@+id/calendar"
@@ -43,4 +46,15 @@
         tools:layout="@layout/fragment_analyze"
         android:name="com.shahm.myapplication.view_frgament.analyze.FragmentAnalyze"
         android:label="FragmentAnalyze" />
+    <fragment
+        android:id="@+id/fragmentDetails"
+        android:name="com.shahm.myapplication.view_frgament.FragmentDetails"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <argument
+            android:name="ArgDetailsSales"
+            app:argType="com.shahm.myapplication.model.SalesPharmacy"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>

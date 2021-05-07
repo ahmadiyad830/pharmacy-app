@@ -12,6 +12,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.journeyapps.barcodescanner.CaptureActivity;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityAddBinding;
+import com.shahm.myapplication.model.Medicines;
 import com.shahm.myapplication.viewmodel.VMNewDrug;
 
 
@@ -19,6 +20,7 @@ public class ActivityAdd extends AppCompatActivity {
 
     private ActivityAddBinding binding;
     private VMNewDrug viewModel;
+    private Medicines model;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +28,14 @@ public class ActivityAdd extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add);
         viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(VMNewDrug.class);
-
+        if (getIntent() != null) {
+            if (getIntent().getSerializableExtra("model") != null) {
+                model = ((Medicines) getIntent().getSerializableExtra("model"));
+                if (model != null) {
+                    binding.setModel(model);
+                }
+            }
+        }
 
         binding.btnBack.setOnClickListener(v -> {
             onBackPressed();

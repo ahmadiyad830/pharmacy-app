@@ -18,7 +18,6 @@ import com.shahm.myapplication.adapter.AdapterMedicines;
 import com.shahm.myapplication.databinding.FragmentAllMedicinesBinding;
 import com.shahm.myapplication.listeners.OnMedClick;
 import com.shahm.myapplication.model.Medicines;
-import com.shahm.myapplication.view_activity.ActivityAdd;
 import com.shahm.myapplication.view_activity.ActivityDetails;
 import com.shahm.myapplication.viewmodel.VMMedicines;
 
@@ -62,11 +61,8 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (recyclerView.canScrollVertically(1)) {
-
-                        increment++;
-                        getMedicines(increment);
-
-
+                    increment++;
+                    getMedicines(increment);
                 }
                 if (recyclerView.canScrollVertically(-1)) {
                     binding.fabScrollRecycler.setVisibility(View.VISIBLE);
@@ -81,8 +77,8 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     private List<Medicines> getMedicines(int page) {
         toggleLoading();
         viewModel.getMedicines(page).observe(getViewLifecycleOwner(), medicines -> {
-            toggleLoading();
             if (medicines != null) {
+                toggleLoading();
                 binding.recyclerMedicines.setVisibility(View.VISIBLE);
                 int oldCount = listMedicines.size();
                 listMedicines.addAll(medicines);
@@ -94,7 +90,7 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     }
 
     private void toggleLoading() {
-        if (currentDrug == 1) {
+        if (increment == 1) {
             binding.setIsLoading(binding.getIsLoading() == null || !binding.getIsLoading());
         } else {
             binding.setIsLoadingMore(binding.getIsLoadingMore() == null || !binding.getIsLoadingMore());
@@ -102,19 +98,10 @@ public class FragmentAllMedicines extends Fragment implements OnMedClick {
     }
 
 
-
     @Override
     public void clickDetails(Medicines model) {
         Intent intent = new Intent(requireActivity(), ActivityDetails.class);
         intent.putExtra("model", model);
-        startActivity(intent);
-    }
-
-    @Override
-    public void clickSale(Medicines model) {
-        Intent intent = new Intent(requireActivity(), ActivityAdd.class);
-        intent.putExtra("model",model);
-        intent.putExtra("type","sale");
         startActivity(intent);
     }
 }

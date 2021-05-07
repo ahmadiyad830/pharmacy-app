@@ -44,7 +44,6 @@
                 android:id="@+id/fab_scroll_recycler"
                 android:layout_width="wrap_content"
                 android:layout_height="?actionBarSize"
-
                 android:clickable="true"
                 android:contentDescription="@string/app_name"
                 android:elevation="6dp"

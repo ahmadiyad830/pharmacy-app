@@ -2,6 +2,7 @@ package com.shahm.myapplication.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -46,6 +47,8 @@ public class ARPHSales extends RecyclerView.Adapter<ARPHSales.ViewHolder> implem
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(listMed.get(position));
+        boolean isExpanded = listMed.get(position).isExpanded();
+        holder.binding.constrainExpanded.setVisibility(isExpanded? View.VISIBLE:View.GONE);
     }
 
     @Override
@@ -130,9 +133,18 @@ public class ARPHSales extends RecyclerView.Adapter<ARPHSales.ViewHolder> implem
 
         private void bind(SalesPharmacy model) {
             binding.setModel(model);
-            binding.getRoot().setOnClickListener(v -> {
+            binding.btnDetails.setOnClickListener(v -> {
                 salesClick.onItemClick(model);
             });
+            binding.container.setOnClickListener(v -> {
+                listMed.get(getAdapterPosition()).setExpanded(!model.isExpanded());
+                notifyItemChanged(getAdapterPosition());
+            });
+            binding.icDelete.setOnClickListener(v -> {
+                salesClick.deleteItem(model.getId(),getAdapterPosition());
+                notifyItemRemoved(getAdapterPosition());
+            });
+
         }
     }
 }

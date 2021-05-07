@@ -10,6 +10,9 @@
             type="com.shahm.myapplication.model.Medicines" />
 
         <import type="android.view.View" />
+        <variable
+            name="isSales"
+            type="Boolean" />
 
     </data>
 
@@ -79,38 +82,43 @@
                     android:textSize="@dimen/_14ssp" />
 
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/scientific"
-                android:textColor="?colorAccent"
-                android:textSize="@dimen/_14ssp" />
-            <TextView
-                android:id="@+id/txtScientific"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:text='@{model.scientific}'
-                android:textColor="?colorAccent"
-                android:textSize="@dimen/_14ssp" />
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scientific"
+                    android:textColor="?colorAccent"
+                    android:textSize="@dimen/_14ssp" />
+
+                <TextView
+                    android:id="@+id/txtScientific"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:text='@{model.scientific}'
+                    android:textColor="?colorAccent"
+                    android:textSize="@dimen/_14ssp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/concentration"
                     android:textColor="?colorAccent"
                     android:textSize="@dimen/_14ssp" />
+
                 <TextView
                     android:id="@+id/txtConcentration"
                     android:layout_width="wrap_content"
@@ -120,17 +128,20 @@
                     android:textColor="?colorAccent"
                     android:textSize="@dimen/_14ssp" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/dosageform"
                     android:textColor="?colorAccent"
                     android:textSize="@dimen/_14ssp" />
+
                 <TextView
                     android:id="@+id/txtDosageform"
                     android:layout_width="wrap_content"
@@ -140,7 +151,6 @@
                     android:textColor="?colorAccent"
                     android:textSize="@dimen/_14ssp" />
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -235,7 +245,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
-                        android:text='@{model.quantity}'
+                        android:text="@{model.quantity}"
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
@@ -255,31 +265,47 @@
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/txtSachet"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_12sdp"
                         android:focusable="true"
-                        android:text='@{model.sachet}'
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:text=""
                         android:textColor="?colorAccent"
                         android:textSize="@dimen/_14ssp" />
                 </LinearLayout>
 
-
-                <EditText
-                    android:id="@+id/edtPrice"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:focusable="true"
-                    android:hint="@string/price"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:text=""
-                    android:textColor="?colorAccent"
-                    android:textSize="@dimen/_14ssp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text='@string/price'
+                        android:textColor="?colorAccent"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <EditText
+                        android:id="@+id/edtPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:focusable="true"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="?colorAccent"
+                        android:textSize="@dimen/_14ssp" />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -323,7 +349,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text='@string/notes'
@@ -400,7 +425,7 @@
                 android:layout_width="0dp"
                 android:layout_height="?actionBarSize"
                 android:layout_weight="1"
-                android:text="@string/update" />
+                android:text="@string/edit" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

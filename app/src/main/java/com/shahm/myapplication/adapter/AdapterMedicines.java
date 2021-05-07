@@ -102,9 +102,6 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
             binding.btnDetails.setOnClickListener(v -> {
                 itemClick.clickDetails(model);
             });
-            binding.btnSale.setOnClickListener(v -> {
-                itemClick.clickSale(model);
-            });
         }
     }
 }

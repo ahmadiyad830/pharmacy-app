@@ -1,5 +1,7 @@
 package com.shahm.myapplication.repositories;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -27,12 +29,17 @@ public class RepositoreMedicines {
         service.getListMedicines(page).enqueue(new Callback<List<Medicines>>() {
             @Override
             public void onResponse(@NonNull Call<List<Medicines>> call, @NonNull Response<List<Medicines>> response) {
-                data.setValue(response.body());
+                try {
+                    data.setValue(response.body());
+                } catch (Exception e) {
+                    Log.d(TAG, "onResponse: "+response.code());
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void onFailure(@NonNull Call<List<Medicines>> call, @NonNull Throwable t) {
-
+                t.printStackTrace();
             }
         });
         return data;

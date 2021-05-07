@@ -9,6 +9,7 @@ public class ApiClint {
 
 
     public static Retrofit getRetrofit() {
+
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .addNetworkInterceptor(chain -> {
 //                    Request.Builder builder = chain.request().newBuilder();

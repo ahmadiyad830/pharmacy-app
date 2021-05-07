@@ -5,5 +5,4 @@ import com.shahm.myapplication.model.Medicines;
 public interface OnMedClick {
 
     void clickDetails(Medicines model);
-    void clickSale(Medicines model);
 }

@@ -7,25 +7,17 @@ public class AnalyzeDepot {
     private String name;
     @SerializedName("Store")
     private String store;
-    @SerializedName("Time Statics")
+    @SerializedName("TimeStatics")
     private String timeStatics;
-    @SerializedName("Available")
-    private String available;
     @SerializedName("Purchases")
     private int purchases;
     @SerializedName("Sales")
     private int sales;
-    @SerializedName("Average Sale")
-    private double averageSale;
+    @SerializedName("AverageSale")
+    private int averageSale;
+    @SerializedName("Available")
+    private String available;
     private boolean expanded;
-
-    public boolean isExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
-    }
 
     public String getName() {
         return name;
@@ -51,14 +43,6 @@ public class AnalyzeDepot {
         this.timeStatics = timeStatics;
     }
 
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
-    }
-
     public int getPurchases() {
         return purchases;
     }
@@ -75,11 +59,27 @@ public class AnalyzeDepot {
         this.sales = sales;
     }
 
-    public double getAverageSale() {
+    public int getAverageSale() {
         return averageSale;
     }
 
-    public void setAverageSale(double averageSale) {
+    public void setAverageSale(int averageSale) {
         this.averageSale = averageSale;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 }

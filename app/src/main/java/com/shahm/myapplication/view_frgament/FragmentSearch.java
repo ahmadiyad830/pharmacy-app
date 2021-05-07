@@ -133,10 +133,7 @@ public class FragmentSearch extends Fragment implements OnMedClick {
         startActivity(intent);
     }
 
-    @Override
-    public void clickSale(Medicines model) {
 
-    }
 
     public class WrapContentLinearLayoutManager extends LinearLayoutManager {
 

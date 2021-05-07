@@ -18,6 +18,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +30,7 @@ import com.shahm.myapplication.view_frgament.FragmentPharmacySales;
 import com.shahm.myapplication.view_frgament.analyze.FragmentAnalyze;
 import com.shahm.myapplication.view_frgament.home_ui.FragmentHome;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity  {
     private ActivityMainBinding binding;
     private NavController controller;
     private BottomSheetDialog bottomSheetDialog;
@@ -54,17 +56,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fromBottom = AnimationUtils.loadAnimation(this, R.anim.animation_from_bottom);
         toBottom = AnimationUtils.loadAnimation(this, R.anim.animation_to_bottom);
 
-        toggle = new ActionBarDrawerToggle(this, binding.drawer, toolbar, R.string.open, R.string.close);
-        binding.drawer.addDrawerListener(toggle);
-        toggle.setDrawerIndicatorEnabled(true);
-        toggle.syncState();
-        try {
-            binding.navigationView.setNavigationItemSelectedListener(this);
-        } catch (Exception e) {
-            finish();
-            e.printStackTrace();
-        }
+        binding.navigationView.setItemIconTintList(null);
+        NavController controller = Navigation.findNavController(this,R.id.nav_host);
+        NavigationUI.setupWithNavController(binding.navigationView,controller);
 
+        binding.icSearch.setOnClickListener(v -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.action_fragmentStore_to_fragmentSetting);
+        });
+        binding.imgMenu.setOnClickListener(v -> {
+            binding.drawer.openDrawer(GravityCompat.START);
+        });
         btnFloat = findViewById(R.id.floatArrow);
         btnAdd = findViewById(R.id.floatAdd);
         btnStore = findViewById(R.id.floatStore);
@@ -79,9 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "add sales", Toast.LENGTH_SHORT).show();
         });
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new FragmentHome()).commit();
-        }
+
 
     }
 
@@ -117,36 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void loadFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame, fragment);
-//        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.home) {
-            loadFragment(new FragmentHome());
-        } else if (id == R.id.sales) {
-            loadFragment(new FragmentPharmacySales());
-        } else if (id == R.id.analyze) {
-            loadFragment(new FragmentAnalyze());
-        }
-        binding.drawer.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
-            binding.drawer.closeDrawer(GravityCompat.START, Animatable2.AnimationCallback.class.isAnnotation());
-        } else {
-            super.onBackPressed();
-        }
-    }
 //    private void bottomSheetCreate() {
 //        if (bottomSheetDialog == null) {
 //            bottomSheetDialog = new BottomSheetDialog(this);

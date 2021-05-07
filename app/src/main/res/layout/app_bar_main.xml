@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,73 +27,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/content_main"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        android:contentDescription="@string/app_name"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:src="@drawable/ic_add"
-        android:visibility="invisible"
-        app:elevation="6dp"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toTopOf="@+id/floatStore"
-        app:layout_constraintEnd_toEndOf="@+id/floatStore"
-        app:layout_constraintStart_toStartOf="@+id/floatStore"
-        app:pressedTranslationZ="12dp"
-        app:tint="?colorSecondaryVariant" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatStore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        android:contentDescription="@string/app_name"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:src="@drawable/ic_store"
-        android:visibility="invisible"
-        app:elevation="6dp"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toTopOf="@+id/floatArrow"
-        app:layout_constraintEnd_toEndOf="@+id/floatArrow"
-        app:layout_constraintStart_toStartOf="@+id/floatArrow"
-        app:pressedTranslationZ="12dp"
-        app:tint="?colorSecondaryVariant" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatArrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:clickable="true"
-        android:contentDescription="@string/app_name"
-        android:elevation="6dp"
-        android:focusable="true"
-        android:src="@drawable/ic_top_arrow"
-        app:elevation="6dp"
-        app:fabSize="auto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:layout_constraintVertical_bias="0.973"
-        app:pressedTranslationZ="12dp"
-        app:tint="?colorSecondaryVariant"
-        app:useCompatPadding="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

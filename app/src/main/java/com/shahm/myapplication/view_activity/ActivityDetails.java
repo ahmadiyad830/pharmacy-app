@@ -1,5 +1,6 @@
 package com.shahm.myapplication.view_activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -15,22 +17,33 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.shahm.myapplication.R;
 import com.shahm.myapplication.databinding.ActivityDetailsBinding;
 import com.shahm.myapplication.model.Medicines;
-import com.shahm.myapplication.viewmodel.VMMedicines;
+import com.shahm.myapplication.model.SalesPharmacy;
+import com.shahm.myapplication.viewmodel.VMSaleDrug;
+
+import java.util.Objects;
 
 public class ActivityDetails extends AppCompatActivity {
     private ActivityDetailsBinding binding;
-    private VMMedicines viewModel;
+    private VMSaleDrug viewModel;
     private Medicines model;
-    private int isEdit = 1;
+    private SalesPharmacy modelSales;
+    private final int isEdit = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+        viewModel = new ViewModelProvider(this, new ViewModelProvider.AndroidViewModelFactory(getApplication())).get(VMSaleDrug.class);
 
 
-        model = (Medicines) getIntent().getSerializableExtra("model");
-        if (model!=null){
+        if (getIntent()!=null){
+            if (getIntent().getSerializableExtra("model")!=null){
+                model = (Medicines) getIntent().getSerializableExtra("model");
+            }else {
+                modelSales = ((SalesPharmacy) getIntent().getSerializableExtra("model sales"));
+            }
+        }
+        if (model != null) {
             binding.setModel(model);
         }
         binding.btnUpdate.setOnClickListener(v -> {
@@ -39,65 +52,58 @@ public class ActivityDetails extends AppCompatActivity {
             startActivity(intent);
         });
         binding.btnSale.setOnClickListener(v -> {
-            Toast.makeText(this, binding.edtPrice.getText().toString(), Toast.LENGTH_SHORT).show();
-
-//            dialogSale();
+            dialogSale();
         });
-
-
-
-
 
         binding.btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
+            onBackPressed();
         });
 
 
     }
 
-//    private void dialogSale() {
-//        AlertDialog dialog = new AlertDialog.Builder(this)
-//                .setTitle(binding.getName())
-//                .setPositiveButton("OK", (dialog1, which) -> {
-//
-//                    dialog1.dismiss();
-//                }).create();
-//        String message;
-//        if (binding.edtPrice.getText() != null && !binding.edtPrice.getText().toString().isEmpty()) {
-//            message = binding.getName() + "\n" + binding.getQuantity() + binding.edtPrice.getText().toString();
-//            uploadSaleData();
-//        } else {
-//            message = "add price";
-//        }
-//        dialog.setMessage(message);
-//        dialog.show();
-//    }
-
-    private void uploadUpdateData() {
-//        String barcode = binding.getBarcode();
-//        String name = binding.getName();
-//        String concentration = binding.getConcentration();
-//        String scientific = binding.getScientific();
-//        String dosageform = binding.getDosageform();
-//        String notes = binding.getNotes();
-//        String location = binding.getLocation();
-//        String store = binding.getStore();
-//        String sachet = binding.getSachet();
-////        String quntity = binding.edt
-//        viewModel.postField(name, scientific, concentration, dosageform, notes, store, sachet, location, "5")
-//                .observe(this, aVoid -> {
-//                    Toast.makeText(this, "success upload data", Toast.LENGTH_SHORT).show();
-//                });
+    private boolean isEmpty() {
+        return !binding.txtQuantity.getText().toString().isEmpty() &&
+                !binding.txtSachet.getText().toString().isEmpty() &&
+                !binding.edtPrice.getText().toString().isEmpty();
     }
 
-//    private void uploadSaleData() {
-//        String itemId = binding.getId();
-//        String price = Objects.requireNonNull(binding.edtPrice.getText()).toString().trim();
-//        String isSachet = binding.edtSachet.getText().toString().trim();
-////        view model in here
-//    }
+    private void dialogSale() {
+        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(this);
+        String message;
+        if (binding.edtPrice.getText() != null && !binding.edtPrice.getText().toString().isEmpty()) {
+            message = "name: " + binding.txtName.getText().toString().trim()
+                    + "\nsachet: " + binding.txtSachet.getText().toString() +
+                    "\nprice: " + binding.edtPrice.getText().toString();
+            alertDialog.setNegativeButton("sale", (dialog1, which) -> {
+                uploadSaleData(alertDialog.create());
+            }).setPositiveButton("No", (dialog1, which) -> {
+                dialog1.dismiss();
+            });
+
+        } else {
+            alertDialog.setPositiveButton("Ok", (dialog1, which) -> {
+                dialog1.dismiss();
+            });
+            message = "add price";
+        }
+        alertDialog.setMessage(message);
+        alertDialog.create().show();
+    }
+
+
+    private void uploadSaleData(AlertDialog dialog) {
+        String itemId = model.getId();
+        String price = Objects.requireNonNull(binding.edtPrice.getText()).toString().trim();
+        String isSachet = binding.txtSachet.getText().toString().trim();
+        if (isEmpty()) {
+            viewModel.postSaleDrug("7247", isSachet, price).observe(this, aVoid -> {
+                dialog.dismiss();
+                Toast.makeText(this, "is success", Toast.LENGTH_SHORT).show();
+            });
+        }
+
+    }
 
 
     @Override

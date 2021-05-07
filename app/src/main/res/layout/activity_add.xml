@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="model"
+            type="com.shahm.myapplication.model.Medicines" />
     </data>
 
     <LinearLayout
@@ -76,7 +78,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_6sdp"
                         android:hint="@string/name"
-
+                        android:text="@{model.name}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -92,7 +94,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/scientific"
-
+                        android:text="@{model.scientific}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -110,7 +112,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/concentration"
-
+                        android:text="@{model.concentration}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -128,7 +130,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/dosageform"
-
+                        android:text="@{model.dosageform}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -145,7 +147,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/notes"
-
+                        android:text="@{model.notes}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -163,7 +165,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/store"
-                        android:text=""
+                        android:text="@{model.store}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -181,7 +183,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/sachet"
-
+                        android:text="@{model.sachet}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -199,7 +201,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/location"
-
+                        android:text="@{model.location}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
@@ -215,7 +217,7 @@
                         android:layout_marginHorizontal="@dimen/_8sdp"
                         android:layout_marginVertical="@dimen/_8sdp"
                         android:hint="@string/quantity"
-
+                        android:text="@{model.quantity}"
                         android:textColor="?attr/colorOnSecondary"
                         android:textDirection="anyRtl"
                         android:textSize="@dimen/_16ssp"
