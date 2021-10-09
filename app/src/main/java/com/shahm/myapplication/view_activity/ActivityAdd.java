@@ -130,5 +130,6 @@ public class ActivityAdd extends AppCompatActivity {
 
     public static class Capture extends CaptureActivity {
 
+
     }
 }

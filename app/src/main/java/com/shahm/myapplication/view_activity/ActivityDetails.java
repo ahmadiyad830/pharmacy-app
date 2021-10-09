@@ -97,7 +97,7 @@ public class ActivityDetails extends AppCompatActivity {
         String price = Objects.requireNonNull(binding.edtPrice.getText()).toString().trim();
         String isSachet = binding.txtSachet.getText().toString().trim();
         if (isEmpty()) {
-            viewModel.postSaleDrug("7247", isSachet, price).observe(this, aVoid -> {
+            viewModel.postSaleDrug(itemId, isSachet, price).observe(this, aVoid -> {
                 dialog.dismiss();
                 Toast.makeText(this, "is success", Toast.LENGTH_SHORT).show();
             });

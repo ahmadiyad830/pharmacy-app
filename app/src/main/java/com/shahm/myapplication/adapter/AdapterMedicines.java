@@ -90,6 +90,7 @@ public class AdapterMedicines extends RecyclerView.Adapter<AdapterMedicines.View
         public ViewHolder(ItemMedicinesBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+
         }
 
         private void bind(Medicines model) {
